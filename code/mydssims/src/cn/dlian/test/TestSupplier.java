@@ -29,9 +29,9 @@ public class TestSupplier {
 	}
 	
 	@Test
-	public void testRegist() {
+	public void testAddSuppier() {
 		Supplier sup = new Supplier(1002,"赵柱","123456","18706729671","西安");
-		boolean bo = supDao.regist(sup);
+		boolean bo = supDao.addSupplier(sup);
 		System.out.println(bo);
 	}
 	

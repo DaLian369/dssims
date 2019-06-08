@@ -29,9 +29,9 @@ public class TestAdministrator {
 
 	@Test
 //	@Ignore
-	public void testRegist() {
-		Administrator adm = new Administrator(1002,"赵铁","123456","18706729692");
-		boolean bo = admDao.regist(adm);
+	public void testAddCustomer() {
+		Administrator adm = new Administrator(1003,"赵","123456","1870629692");
+		boolean bo = admDao.addAdministrator(adm);
 		System.out.println(bo);
 	}
 	

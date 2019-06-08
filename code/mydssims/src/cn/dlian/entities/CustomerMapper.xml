@@ -19,7 +19,7 @@
 		<result property="phone" column="C_PHONE"/>
 	</resultMap>
 	
-	<insert id="regist" parameterType="cn.dlian.entities.Customer">
+	<insert id="addCustomer" parameterType="cn.dlian.entities.Customer">
 		insert into customer values(#{id},#{password},#{name},#{phone})
 	</insert>
 	

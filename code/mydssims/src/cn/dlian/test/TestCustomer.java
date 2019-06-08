@@ -30,7 +30,7 @@ public class TestCustomer {
 //	@Ignore
 	public void testRegist() {
 		Customer cus = new Customer(1002,"赵铁柱","123456","18706729691");
-		boolean bo = cusDao.regist(cus);
+		boolean bo = cusDao.addCustomer(cus);
 		System.out.println(bo);
 	}
 	

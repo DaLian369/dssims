@@ -18,7 +18,7 @@
 		select * from administrator where A_ID = #{id} and A_PASSWORD=#{password}
 	</select>
 	
-	<insert id="regist" parameterType="cn.dlian.entities.Administrator">
+	<insert id="addAdministrator" parameterType="cn.dlian.entities.Administrator">
 		insert into administrator values(#{id},#{password},#{name},#{phone})
 	</insert>
 	

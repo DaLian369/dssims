@@ -20,7 +20,7 @@
 		<result property="city" column="S_CITY"/>
 	</resultMap>
 	
-	<insert id="regist" parameterType="cn.dlian.entities.Supplier">
+	<insert id="addSupplier" parameterType="cn.dlian.entities.Supplier">
 		insert into supplier values(#{id},#{password},#{name},#{phone},#{city})
 	</insert>
 	

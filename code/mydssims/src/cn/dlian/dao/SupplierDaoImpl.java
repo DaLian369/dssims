@@ -59,8 +59,8 @@ public class SupplierDaoImpl implements ISupplierDao {
 	 * 供应商注册
 	 */
 	@Override
-	public boolean regist(Supplier sup) {
-		String statement = "cn.dlian.entities.SupplierMapper.regist";
+	public boolean addSupplier(Supplier sup) {
+		String statement = "cn.dlian.entities.SupplierMapper.addSupplier";
 		int x = sqlSession.insert(statement,sup);
 		return x>0;
 	}

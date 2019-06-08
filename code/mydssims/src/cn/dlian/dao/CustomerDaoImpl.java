@@ -48,8 +48,8 @@ public class CustomerDaoImpl implements ICustomerDao {
 	 * 客户注册
 	 */
 	@Override
-	public boolean regist(Customer cus) {
-		String statement = "cn.dlian.entities.CustomerMapper.regist";
+	public boolean addCustomer(Customer cus) {
+		String statement = "cn.dlian.entities.CustomerMapper.addCustomer";
 		int x = sqlSession.insert(statement,cus);
 		return x>0;
 	}

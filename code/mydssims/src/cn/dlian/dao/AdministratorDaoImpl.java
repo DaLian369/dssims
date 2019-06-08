@@ -57,11 +57,11 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 	}
 
 	/**
-	 * 管理员注册
+	 * 添加管理员
 	 */
 	@Override
-	public boolean regist(Administrator adm) {
-		String statement = "cn.dlian.entities.AdministratorMapper.regist";
+	public boolean addAdministrator(Administrator adm) {
+		String statement = "cn.dlian.entities.AdministratorMapper.addAdministrator";
 		int x = sqlSession.update(statement,adm);
 		return x>0;
 	}
