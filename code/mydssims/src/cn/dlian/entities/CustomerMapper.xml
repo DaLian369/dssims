@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+	"-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<!-- namespace作用是找到当前映射文件中的某个具体语句，其值唯一 -->
+<mapper namespace="cn.dlian.entities.CustomerMapper">
+	<select id="queryInfo" parameterType="int" resultMap="customerResultMap">
+		select * from customer where C_ID = #{id}
+	</select>
+	
+	<select id="login" parameterType="cn.dlian.entities.Customer" resultMap="customerResultMap">
+		select * from customer where C_ID = #{id} and C_PASSWORD=#{password}
+	</select>
+	
+	<resultMap type="cn.dlian.entities.Customer" id="customerResultMap">
+		<id property="id" column="C_ID" />
+		<result property="name" column="C_NAME"/>
+		<result property="password" column="C_PASSWORD"/>
+		<result property="phone" column="C_PHONE"/>
+	</resultMap>
+	
+	<insert id="regist" parameterType="cn.dlian.entities.Customer">
+		insert into customer values(#{id},#{password},#{name},#{phone})
+	</insert>
+	
+	<update id="updatePassword" parameterType="cn.dlian.entities.Customer">
+		update customer set C_PASSWORD=#{password} where C_ID=#{id}
+	</update>
+	
+	<update id="updateInfo" parameterType="cn.dlian.entities.Customer">
+		update customer set C_NAME=#{name},C_PHONE=#{phone} where C_ID=#{id}
+	</update>
+</mapper>

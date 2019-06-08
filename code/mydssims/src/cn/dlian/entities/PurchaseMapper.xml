@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+	"-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<!-- namespace作用是找到当前映射文件中的某个具体语句，其值唯一 -->
+<mapper namespace="cn.dlian.entities.PurchaseMapper">
+	<insert id="addPurchase" parameterType="cn.dlian.entities.Purchase">
+		insert into purchase values(#{id},#{aid},#{mid},#{sid},#{qty},#{dollars},#{transactionDate},#{state})
+	</insert>
+	
+	<update id="updatePurchase" parameterType="hashmap">
+		update purchase set P_STATE = #{state} where P_ID = #{pid}
+	</update>
+	
+	<delete id="deletePurchase" parameterType="int">
+		delete from purchase where P_ID=#{pid}
+	</delete>
+	
+	<resultMap id="purchaseResultMap" type="cn.dlian.entities.Purchase">
+		<id property="id" column="P_ID" />
+		<result property="aid" column="A_ID" />
+		<result property="mid" column="M_ID" />
+		<result property="sid" column="S_ID" />
+		<result property="qty" column="P_QTY" />
+		<result property="dollars" column="P_DOLLARS" />
+		<result property="transactionDate" column="P_TRANSACTION_DATE" />
+		<result property="state" column="P_STATE" />
+	</resultMap>
+	
+	<select id="queryPurchaseByPid" parameterType="int" resultMap="purchaseResultMap">
+		select * from purchase where P_ID=#{id}
+	</select>
+	
+	<select id="queryPurchasesByAid" parameterType="int" resultMap="purchaseResultMap">
+		select * from purchase where A_ID=#{aid}
+	</select>
+	
+	<select id="queryPurchasesByAidPaid" parameterType="int" resultMap="purchaseResultMap">
+		select * from purchase where A_ID=#{aid} and P_STATE=1
+	</select>
+	
+	<select id="queryPurchasesByAidWait" parameterType="int" resultMap="purchaseResultMap">
+		select * from purchase where A_ID=#{aid} and P_STATE=2
+	</select>
+	
+	<select id="queryPurchasesBySid" parameterType="int" resultMap="purchaseResultMap">
+		select * from purchase where S_ID=#{sid}
+	</select>
+	
+	<select id="queryPurchasesBySidPaid" parameterType="int" resultMap="purchaseResultMap">
+		select * from purchase where S_ID=#{sid} and P_STATE=1
+	</select>
+	
+	<select id="queryPurchasesBySidWait" parameterType="int" resultMap="purchaseResultMap">
+		select * from purchase where S_ID=#{sid} and P_STATE=2
+	</select>
+	
+	<select id="queryPurchasesBySidAid" parameterType="hashmap" resultMap="purchaseResultMap">
+		select * from purchase where S_ID=#{sid} and A_ID=#{aid}
+	</select>
+</mapper>

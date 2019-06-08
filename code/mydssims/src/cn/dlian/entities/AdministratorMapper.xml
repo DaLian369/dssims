@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+	"-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<!-- namespace作用是找到当前映射文件中的某个具体语句，其值唯一 -->
+<mapper namespace="cn.dlian.entities.AdministratorMapper">
+	<select id="queryInfo" parameterType="int" resultMap="administratorResultMap">
+		select * from Administrator where A_ID = #{id}
+	</select>
+	<resultMap type="cn.dlian.entities.Administrator" id="administratorResultMap">
+		<id property="id" column="A_ID" />
+		<result property="name" column="A_NAME"/>
+		<result property="password" column="A_PASSWORD"/>
+		<result property="phone" column="A_PHONE"/>
+	</resultMap>
+	
+	<select id="login" parameterType="cn.dlian.entities.Administrator" resultMap="administratorResultMap">
+		select * from administrator where A_ID = #{id} and A_PASSWORD=#{password}
+	</select>
+	
+	<insert id="regist" parameterType="cn.dlian.entities.Administrator">
+		insert into administrator values(#{id},#{password},#{name},#{phone})
+	</insert>
+	
+	<update id="updatePassword" parameterType="cn.dlian.entities.Administrator">
+		update administrator set A_PASSWORD=#{password} where A_ID=#{id}
+	</update>
+	
+	<update id="updateInfo" parameterType="cn.dlian.entities.Administrator">
+		update administrator set A_NAME=#{name},A_PHONE=#{phone} where A_ID=#{id}
+	</update>
+</mapper>

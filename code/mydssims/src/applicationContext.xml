@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 不再使用dtd的方式来限定xml文件中的标签，而使用新型xsd来限定! -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/tx/spring-context-3.2.xsd"
+       >
+    <!-- 1.配置数据源，其用于连接数据库 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+    	  p:driverClassName="com.mysql.cj.jdbc.Driver"
+          p:url="jdbc:mysql://127.0.0.1:3306/dssims?serverTimezone=UTC"
+          p:username="root"
+          p:password="xuelei123"
+          p:initialSize="5"
+          p:maxActive="50"
+          p:maxIdle="20"
+          p:minIdle="5"
+          p:maxWait="10000"
+          p:validationQuery="select 1 from dual"
+          p:testOnBorrow="false"
+          p:testOnReturn="true"
+          p:testWhileIdle="true"
+          p:minEvictableIdleTimeMillis="60000"
+          p:timeBetweenEvictionRunsMillis="300000"
+    />
+    <!-- 2.根据已经配置好的数据源，生成sessionFactory对象 -->
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
+          p:configLocation="classpath:Mybatis-config.xml"
+          p:dataSource-ref="dataSource"
+          p:mapperLocations="classpath:cn/dlian/entities/*.xml"
+    />
+    <!--  3.配置SqlSession，注入SqlSessionTemplate，Dao层使用它来进行数据库操作(而不是SessionFatory来open了)-->
+    <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+    	<constructor-arg index="0" ref="sessionFactory" />
+    </bean>
+    <!-- 4.设置spring的事务管理器 -->
+    <bean id="transactionManager" 
+          class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
+          p:dataSource-ref="dataSource"
+    />
+    <!-- 5.开启注解方式，进行自动事务处理的能力 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
+    
+    <!-- 5.配置业务中所需的各个bean，及其依赖关系 -->
+    <!-- Dao层 -->
+    <bean id="admDao" class="cn.dlian.dao.AdministratorDaoImpl"
+    	p:sqlSession-ref="sqlSession"
+    />
+    <bean id="cusDao" class="cn.dlian.dao.CustomerDaoImpl"
+    	p:sqlSession-ref="sqlSession"
+    />
+    <bean id="supDao" class="cn.dlian.dao.SupplierDaoImpl"
+    	p:sqlSession-ref="sqlSession"
+    />
+    <bean id="medDao" class="cn.dlian.dao.MedicineDaoImpl"
+    	p:sqlSession-ref="sqlSession"
+    />
+    <bean id="orderDao" class="cn.dlian.dao.OrderDaoImpl"
+    	p:sqlSession-ref="sqlSession"
+    />
+    <bean id="purDao" class="cn.dlian.dao.PurchaseDaoImpl"
+    	p:sqlSession-ref="sqlSession"
+    />
+    <bean id="invDao" class="cn.dlian.dao.InventoryDaoImpl"
+    	p:sqlSession-ref="sqlSession"
+    />
+    
+    <!-- Service层 -->
+    <bean id="admService" class="cn.dlian.service.AdministratorServiceImpl"
+          p:admDao-ref="admDao"
+    />
+    <!-- 
+    <bean id="cusService" class="cn.dlian.service.CustomerServiceImpl"
+          p:admDao-ref="admDao"
+    />
+    <bean id="supService" class="cn.dlian.service.SupplierServiceImpl"
+          p:admDao-ref="admDao"
+    />
+    <bean id="medService" class="cn.dlian.service.MedicineServiceImpl"
+          p:admDao-ref="admDao"
+    />
+    <bean id="orderService" class="cn.dlian.service.OrderServiceImpl"
+          p:admDao-ref="admDao"
+    />
+    <bean id="purService" class="cn.dlian.service.PurchaseServiceImpl"
+          p:admDao-ref="admDao"
+    />
+    <bean id="invService" class="cn.dlian.service.InventoryServiceImpl"
+          p:admDao-ref="admDao"
+    /> -->
+    
+    <!-- 工厂 -->
+    <bean id="daoFactory" class="cn.dlian.dao.DaoFactory"
+    	p:admDao-ref="admDao"
+    	p:cusDao-ref="cusDao"
+    	p:supDao-ref="supDao"
+    	p:medDao-ref="medDao"
+    	p:orderDao-ref="orderDao"
+    	p:purDao-ref="purDao"
+    	p:invDao-ref="invDao"
+    />
+</beans>

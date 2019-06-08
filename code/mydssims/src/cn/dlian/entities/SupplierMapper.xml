@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+	"-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<!-- namespace作用是找到当前映射文件中的某个具体语句，其值唯一 -->
+<mapper namespace="cn.dlian.entities.SupplierMapper">
+	<select id="queryInfo" parameterType="int" resultMap="supplierResultMap">
+		select * from supplier where S_ID = #{id}
+	</select>
+	
+	<select id="login" parameterType="cn.dlian.entities.Supplier" resultMap="supplierResultMap">
+		select * from supplier where S_ID = #{id} and S_PASSWORD=#{password}
+	</select>
+	
+	<resultMap type="cn.dlian.entities.Supplier" id="supplierResultMap">
+		<id property="id" column="S_ID" />
+		<result property="name" column="S_NAME"/>
+		<result property="password" column="S_PASSWORD"/>
+		<result property="phone" column="S_PHONE"/>
+		<result property="city" column="S_CITY"/>
+	</resultMap>
+	
+	<insert id="regist" parameterType="cn.dlian.entities.Supplier">
+		insert into supplier values(#{id},#{password},#{name},#{phone},#{city})
+	</insert>
+	
+	<update id="updatePassword" parameterType="cn.dlian.entities.Supplier">
+		update supplier set S_PASSWORD=#{password} where S_ID=#{id}
+	</update>
+	
+	<update id="updateInfo" parameterType="cn.dlian.entities.Supplier">
+		update supplier set S_NAME=#{name},S_PHONE=#{phone},S_CITY=#{city} where S_ID=#{id}
+	</update>
+</mapper>

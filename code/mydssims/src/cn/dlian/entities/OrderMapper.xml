@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+	"-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<!-- namespace作用是找到当前映射文件中的某个具体语句，其值唯一 -->
+<mapper namespace="cn.dlian.entities.OrderMapper">
+	<insert id="addOrder" parameterType="cn.dlian.entities.Order">
+		insert into `order` values(#{id},#{cid},#{aid},#{mid},#{sid},#{qty},#{dollars},#{transactionDate},#{state})
+	</insert>
+	
+	<update id="updateOrder" parameterType="hashmap">
+		update `order` set O_STATE = #{state} where O_ID = #{oid}
+	</update>
+	
+	<delete id="deleteOrder" parameterType="int">
+		delete from `order` where O_ID=#{oid}
+	</delete>
+	
+	<resultMap id="orderResultMap" type="cn.dlian.entities.Order">
+		<id property="id" column="O_ID" />
+		<result property="cid" column="C_ID" />
+		<result property="aid" column="A_ID" />
+		<result property="mid" column="M_ID" />
+		<result property="sid" column="S_ID" />
+		<result property="qty" column="O_QTY" />
+		<result property="dollars" column="O_DOLLARS" />
+		<result property="transactionDate" column="O_TRANSACTION_DATE" />
+		<result property="state" column="O_STATE" />
+	</resultMap>
+	
+	<select id="queryOrdersByOid" parameterType="int" resultMap="orderResultMap">
+		select * from `order` where O_ID=#{oid}
+	</select>
+	
+	<select id="queryOrdersByCid" parameterType="int" resultMap="orderResultMap">
+		select * from `order` where C_ID = #{cid}
+	</select>
+	
+	<select id="queryOrdersByCidPaid" parameterType="int" resultMap="orderResultMap">
+		select * from `order` where C_ID = #{cid} and O_STATE = 1
+	</select>
+	
+	<select id="queryOrdersByCidWait" parameterType="int" resultMap="orderResultMap">
+		select * from `order` where C_ID = #{cid} and O_STATE = 2
+	</select>
+	
+	<select id="queryOrdersByAid" parameterType="int" resultMap="orderResultMap">
+		select * from `order` where A_ID = #{aid}
+	</select>
+	
+	<select id="queryOrdersByAidPaid" parameterType="int" resultMap="orderResultMap">
+		select * from `order` where A_ID = #{aid} and O_STATE = 1
+	</select>
+	
+	<select id="queryOrdersByAidWait" parameterType="int" resultMap="orderResultMap">
+		select * from `order` where A_ID = #{aid} and O_STATE = 2
+	</select>
+	
+	<select id="queryOrdersByAidCid" parameterType="hashmap" resultMap="orderResultMap">
+		select * from `order` where A_ID = #{aid} and C_ID = #{cid}
+	</select>
+</mapper>

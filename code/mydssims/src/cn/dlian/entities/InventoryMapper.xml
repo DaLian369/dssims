@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+	"-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<!-- namespace作用是找到当前映射文件中的某个具体语句，其值唯一 -->
+<mapper namespace="cn.dlian.entities.InventoryMapper">
+	<insert id="addInventory" parameterType="hashmap">
+		insert into inventory values(#{aid},#{mid},#{sid},#{value})
+	</insert>
+	
+	<update id="updateInventory" parameterType="hashmap">
+		update inventory set COUNT=COUNT+#{value} where A_ID=#{aid} and M_ID=#{mid} and S_ID=#{sid}
+	</update>
+	
+	<delete id="deleteInventory" parameterType="hashmap">
+		delete from inventory where A_ID=#{aid} and M_ID=#{mid} and S_ID=#{sid}
+	</delete>
+	
+	<resultMap id="invResultMap" type="cn.dlian.entities.Inventory">
+		<result property="count" column="COUNT" />
+		<association property="medicine" javaType="cn.dlian.entities.Medicine">
+			<id property="id" column="M_ID" />
+			<result property="name" column="M_NAME"/>
+			<result property="type" column="M_TYPE"/>
+			<result property="price" column="M_PRICE"/>
+			<result property="productionDate" column="M_PRODUCTION_DATE"/>
+			<result property="qualityGuaranteePeriod" column="M_QUALITY_GUARANTEE_PERIOD"/>
+		</association>
+		<association property="supplier" javaType="cn.dlian.entities.Supplier">
+			<id property="id" column="S_ID" />
+			<result property="name" column="S_NAME"/>
+			<result property="password" column="S_PASSWORD"/>
+			<result property="phone" column="S_PHONE"/>
+			<result property="city" column="S_CITY"/>
+		</association>
+	</resultMap>
+	
+	<select id="queryInventory" parameterType="hashmap" resultMap="invResultMap">
+		select * from inventory i,administrator a,medicine m, supplier s 
+			where i.A_ID=a.A_ID and i.M_ID=m.M_ID and i.S_ID=s.S_ID
+			and i.A_ID=#{aid} and i.M_ID=#{mid} and i.S_ID=#{sid};
+	</select> 
+</mapper>

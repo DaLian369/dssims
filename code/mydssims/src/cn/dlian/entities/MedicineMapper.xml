@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC
+	"-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	<!-- namespace作用是找到当前映射文件中的某个具体语句，其值唯一 -->
+<mapper namespace="cn.dlian.entities.MedicineMapper">
+	<insert id="addMedicine" parameterType="cn.dlian.entities.Medicine">
+		insert into medicine values(#{id},#{name},#{type},#{price},#{productionDate},#{qualityGuaranteePeriod})
+	</insert>
+	
+	<delete id="deleteMedicine" parameterType="int">
+		delete from medicine where M_ID = #{id}
+	</delete>
+	
+	<update id="updateMedicine" parameterType="cn.dlian.entities.Medicine">
+		update medicine set M_NAME=#{name},M_TYPE=#{type},M_PRICE=#{price},M_PRODUCTION_DATE=#{productionDate},M_QUALITY_GUARANTEE_PERIOD=#{qualityGuaranteePeriod}
+	</update>
+	
+	<resultMap id="medResultMap" type="cn.dlian.entities.Medicine">
+		<id property="id" column="M_ID" />
+		<result property="name" column="M_NAME"/>
+		<result property="type" column="M_TYPE"/>
+		<result property="price" column="M_PRICE"/>
+		<result property="productionDate" column="M_PRODUCTION_DATE"/>
+		<result property="qualityGuaranteePeriod" column="M_QUALITY_GUARANTEE_PERIOD"/>
+	</resultMap>
+	
+	<select id="queryMedicine" parameterType="int" resultMap="medResultMap">
+		select * from medicine where M_ID=#{mid}
+	</select>
+	
+	<select id="fuzzyQuery" parameterType="cn.dlian.entities.Medicine" resultMap="medResultMap">
+		select * from medicine where M_NAME like #{meg} or M_TYPE = #{meg}
+	</select>
+</mapper>
