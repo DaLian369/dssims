@@ -9,7 +9,7 @@
 	</select>
 	
 	<select id="login" parameterType="cn.dlian.entities.Customer" resultMap="customerResultMap">
-		select * from customer where C_ID = #{id} and C_PASSWORD=#{password}
+		select * from customer where C_PHONE = #{phone} and C_PASSWORD=#{password}
 	</select>
 	
 	<resultMap type="cn.dlian.entities.Customer" id="customerResultMap">
@@ -20,7 +20,7 @@
 	</resultMap>
 	
 	<insert id="addCustomer" parameterType="cn.dlian.entities.Customer">
-		insert into customer values(#{id},#{password},#{name},#{phone})
+		insert into customer values(default,#{password},#{name},#{phone})
 	</insert>
 	
 	<update id="updatePassword" parameterType="cn.dlian.entities.Customer">

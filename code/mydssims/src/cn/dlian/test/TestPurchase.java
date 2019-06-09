@@ -18,7 +18,7 @@ public class TestPurchase {
 	
 	@Test
 	public void addPurchase() {
-		Purchase purchase = new Purchase(1001, 1001, 1001, 1001, 10, 100, new Date(new java.util.Date().getTime()), 1);
+		Purchase purchase = new Purchase(1001, 1, 1, 1, 10, 100, new Date(new java.util.Date().getTime()), 1);
 		boolean bo= purDao.addPurchase(purchase);
 		System.out.println(bo);
 	}

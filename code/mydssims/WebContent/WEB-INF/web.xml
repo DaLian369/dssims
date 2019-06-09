@@ -23,6 +23,11 @@
   <servlet-mapping>
   	<servlet-name>viewSpace</servlet-name>
   	<url-pattern>*.form</url-pattern>
+  	<url-pattern>*.css</url-pattern>
+  	<url-pattern>*.jpg</url-pattern>
+  	<url-pattern>*.js</url-pattern>
+  	<url-pattern>*.png</url-pattern>
+  	<url-pattern>*.html</url-pattern>
   </servlet-mapping>
   
   <filter>

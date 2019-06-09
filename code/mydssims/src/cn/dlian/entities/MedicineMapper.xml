@@ -5,7 +5,7 @@
 	<!-- namespace作用是找到当前映射文件中的某个具体语句，其值唯一 -->
 <mapper namespace="cn.dlian.entities.MedicineMapper">
 	<insert id="addMedicine" parameterType="cn.dlian.entities.Medicine">
-		insert into medicine values(#{id},#{name},#{type},#{price},#{productionDate},#{qualityGuaranteePeriod})
+		insert into medicine values(default,#{name},#{type},#{price},#{productionDate},#{qualityGuaranteePeriod})
 	</insert>
 	
 	<delete id="deleteMedicine" parameterType="int">

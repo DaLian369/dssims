@@ -25,7 +25,7 @@ public class SupplierDaoImpl implements ISupplierDao {
 	@Override
 	public Supplier queryInfo(int id) {
 		String statement = "cn.dlian.entities.SupplierMapper.queryInfo";
-		Supplier sup = sqlSession.selectOne(statement,1001);
+		Supplier sup = sqlSession.selectOne(statement,1);
 		return sup;
 	}
 	
@@ -33,10 +33,10 @@ public class SupplierDaoImpl implements ISupplierDao {
 	 * 供应商登陆
 	 */
 	@Override
-	public boolean login(int id, String password) {
+	public boolean login(String phone, String password) {
 		String statement = "cn.dlian.entities.SupplierMapper.login";
 		Supplier sup = new Supplier();
-		sup.setId(id);
+		sup.setPhone(phone);
 		sup.setPassword(password);
 		sup = sqlSession.selectOne(statement,sup);
 		return sup!=null;
@@ -61,8 +61,12 @@ public class SupplierDaoImpl implements ISupplierDao {
 	@Override
 	public boolean addSupplier(Supplier sup) {
 		String statement = "cn.dlian.entities.SupplierMapper.addSupplier";
-		int x = sqlSession.insert(statement,sup);
-		return x>0;
+		try{
+			return sqlSession.insert(statement,sup)>0;
+		}catch(Exception e) {
+			return false;
+		}
+		
 	}
 
 

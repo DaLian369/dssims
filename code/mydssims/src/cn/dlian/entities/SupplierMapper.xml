@@ -9,7 +9,7 @@
 	</select>
 	
 	<select id="login" parameterType="cn.dlian.entities.Supplier" resultMap="supplierResultMap">
-		select * from supplier where S_ID = #{id} and S_PASSWORD=#{password}
+		select * from supplier where S_PHONE = #{phone} and S_PASSWORD=#{password}
 	</select>
 	
 	<resultMap type="cn.dlian.entities.Supplier" id="supplierResultMap">
@@ -21,7 +21,7 @@
 	</resultMap>
 	
 	<insert id="addSupplier" parameterType="cn.dlian.entities.Supplier">
-		insert into supplier values(#{id},#{password},#{name},#{phone},#{city})
+		insert into supplier values(default,#{password},#{name},#{phone},#{city})
 	</insert>
 	
 	<update id="updatePassword" parameterType="cn.dlian.entities.Supplier">

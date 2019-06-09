@@ -17,7 +17,7 @@ public class TestOrder {
 	
 	@Test
 	public void addOrder() {
-		Order order = new Order(1001, 1001, 1001, 1001, 1001, 10, 100, new Date(new java.util.Date().getTime()), 1);
+		Order order = new Order(1, 1, 1, 1, 1, 10, 100, new Date(new java.util.Date().getTime()), 1);
 		boolean bo= orderDao.addOrder(order);
 		System.out.println(bo);
 	}

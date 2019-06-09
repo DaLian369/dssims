@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.dlian.entities.Order;
 
+@Transactional
 public class OrderDaoImpl implements IOrderDao {
 
 	private SqlSession sqlSession;

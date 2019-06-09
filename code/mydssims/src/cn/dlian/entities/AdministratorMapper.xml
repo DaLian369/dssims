@@ -5,7 +5,7 @@
 	<!-- namespace作用是找到当前映射文件中的某个具体语句，其值唯一 -->
 <mapper namespace="cn.dlian.entities.AdministratorMapper">
 	<select id="queryInfo" parameterType="int" resultMap="administratorResultMap">
-		select * from Administrator where A_ID = #{id}
+		select * from Administrator where A_ID = #{id]}
 	</select>
 	<resultMap type="cn.dlian.entities.Administrator" id="administratorResultMap">
 		<id property="id" column="A_ID" />
@@ -15,11 +15,11 @@
 	</resultMap>
 	
 	<select id="login" parameterType="cn.dlian.entities.Administrator" resultMap="administratorResultMap">
-		select * from administrator where A_ID = #{id} and A_PASSWORD=#{password}
+		select * from administrator where A_PHONE = #{phone} and A_PASSWORD=#{password}
 	</select>
 	
 	<insert id="addAdministrator" parameterType="cn.dlian.entities.Administrator">
-		insert into administrator values(#{id},#{password},#{name},#{phone})
+		insert into administrator values(default,#{password},#{name},#{phone})
 	</insert>
 	
 	<update id="updatePassword" parameterType="cn.dlian.entities.Administrator">

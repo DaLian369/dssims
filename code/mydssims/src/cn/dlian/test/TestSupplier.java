@@ -24,26 +24,26 @@ public class TestSupplier {
 	
 	@Test
 	public void testLogin() {
-		boolean bo = supDao.login(1001, "123456");
+		boolean bo = supDao.login("18702729676", "123456");
 		System.out.println(bo);
 	}
 	
 	@Test
 	public void testAddSuppier() {
-		Supplier sup = new Supplier(1002,"赵柱","123456","18706729671","西安");
+		Supplier sup = new Supplier(0,"赵柱","123456","18706729671","西安");
 		boolean bo = supDao.addSupplier(sup);
 		System.out.println(bo);
 	}
 	
 	@Test
 	public void testUpdatePassword() {
-		boolean bo = supDao.updatePassword(1001, "12345");
+		boolean bo = supDao.updatePassword(1, "12345");
 		System.out.println(bo);
 	}
 	
 	@Test
 	public void testUpdateInfo() {
-		Supplier sup = new Supplier(1001,"王斌","","18706729611","西安");
+		Supplier sup = new Supplier(1,"王斌","","18706729611","西安");
 //		Supplier sup = new Supplier(1002,"赵铁","123456","18706729691");
 		boolean bo = supDao.updateInfo(sup);
 		System.out.println(bo);

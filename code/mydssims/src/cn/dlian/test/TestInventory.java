@@ -16,7 +16,7 @@ public class TestInventory {
 	
 	@Test
 	public void testQueryInventory() {
-		List<Inventory> inventoies = invDao.queryInventory(1001, 1001, 1001);
+		List<Inventory> inventoies = invDao.queryInventory(1, 1, 1);
 		if(inventoies != null) {
 			for (Inventory inventory : inventoies) {
 				System.out.println(inventory.getMedicine());
@@ -27,16 +27,18 @@ public class TestInventory {
 	}
 	
 	@Test
-	public void testUpdateInventory() {
-		boolean bo = invDao.updateInventory(1001, 1001, 1001, -10);
+	public void testAddInventory() {
+		boolean bo = invDao.addInventory(1,1,1,1000);
 		System.out.println(bo);
 	}
 	
 	@Test
-	public void testAddInventory() {
-		boolean bo = invDao.addInventory(1001, 1001, 1001, 1000);
+	public void testUpdateInventory() {
+		boolean bo = invDao.updateInventory(1, 1, 1, -10);
 		System.out.println(bo);
 	}
+	
+	
 	
 	@Test
 	public void testDeleteInventory() {

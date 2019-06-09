@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.dlian.entities.Inventory;
 
+@Transactional
 public class InventoryDaoImpl implements IInventoryDao {
 
 private SqlSession sqlSession;
@@ -52,13 +54,13 @@ private SqlSession sqlSession;
 	 * 添加新品
 	 */
 	@Override
-	public boolean addInventory(int aid,int mid,int sid,int value) {
+	public boolean addInventory(int aid,int mid,int sid,int count) {
 		String sql = "cn.dlian.entities.InventoryMapper.addInventory";
 		Map<String,Integer> map = new HashMap<>();
 		map.put("aid", aid);
 		map.put("mid", mid);
 		map.put("sid", sid);
-		map.put("value", value);
+		map.put("count", count);
 		int x = sqlSession.insert(sql,map);
 		return x>0;
 	}

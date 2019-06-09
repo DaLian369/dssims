@@ -34,10 +34,10 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 	 * 管理员登陆
 	 */
 	@Override
-	public boolean login(int id, String password) {
+	public boolean login(String phone, String password) {
 		String statement = "cn.dlian.entities.AdministratorMapper.login";
 		Administrator adm = new Administrator();
-		adm.setId(id);
+		adm.setPhone(phone);
 		adm.setPassword(password);
 		adm = sqlSession.selectOne(statement, adm);
 		return adm!=null;
@@ -62,8 +62,11 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 	@Override
 	public boolean addAdministrator(Administrator adm) {
 		String statement = "cn.dlian.entities.AdministratorMapper.addAdministrator";
-		int x = sqlSession.update(statement,adm);
-		return x>0;
+		try {
+			return sqlSession.insert(statement,adm)>0;
+		}catch(Exception e) {
+			return false;
+		}
 	}
 
 	/**

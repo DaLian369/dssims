@@ -5,7 +5,7 @@
 	<!-- namespace作用是找到当前映射文件中的某个具体语句，其值唯一 -->
 <mapper namespace="cn.dlian.entities.InventoryMapper">
 	<insert id="addInventory" parameterType="hashmap">
-		insert into inventory values(#{aid},#{mid},#{sid},#{value})
+		insert into inventory values(#{aid},#{mid},#{sid},#{count})
 	</insert>
 	
 	<update id="updateInventory" parameterType="hashmap">

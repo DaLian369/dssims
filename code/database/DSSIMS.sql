@@ -1,22 +1,8 @@
 /*==============================================================*/
 /* DBMS name:      MySQL 5.0                                    */
-/* Created on:     2019/6/8 0:24:35                             */
+/* Created on:     2019/6/9 16:02:12                            */
 /*==============================================================*/
 
-
-drop table if exists ADMINISTRATOR;
-
-drop table if exists CUSTOMER;
-
-drop table if exists INVENTORY;
-
-drop table if exists MEDICINE;
-
-drop table if exists "ORDER";
-
-drop table if exists PURCHASE;
-
-drop table if exists SUPPLIER;
 
 /*==============================================================*/
 /* Table: ADMINISTRATOR                                         */
@@ -26,8 +12,9 @@ create table ADMINISTRATOR
    A_ID                 int not null auto_increment,
    A_PASSWORD           varchar(20) not null,
    A_NAME               varchar(20),
-   A_PHONE              varchar(11),
-   primary key (A_ID)
+   A_PHONE              varchar(11) UNIQUE,
+   primary key (A_ID),
+   key AK_A_PHONE (A_PHONE)
 );
 
 /*==============================================================*/
@@ -38,8 +25,9 @@ create table CUSTOMER
    C_ID                 int not null auto_increment,
    C_PASSWORD           varchar(20) not null,
    C_NAME               varchar(20),
-   C_PHONE              varchar(11),
-   primary key (C_ID)
+   C_PHONE              varchar(11) UNIQUE,
+   primary key (C_ID),
+   key AK_C_PHONE (C_PHONE)
 );
 
 /*==============================================================*/
@@ -71,7 +59,7 @@ create table MEDICINE
 /*==============================================================*/
 /* Table: "ORDER"                                               */
 /*==============================================================*/
-create table "ORDER"
+create table `ORDER`
 (
    O_ID                 int not null auto_increment,
    C_ID                 int,
@@ -109,9 +97,10 @@ create table SUPPLIER
    S_ID                 int not null auto_increment,
    S_PASSWORD           varchar(20) not null,
    S_NAME               varchar(20),
-   S_PHONE              varchar(11),
+   S_PHONE              varchar(11) UNIQUE,
    S_CITY               varchar(20),
-   primary key (S_ID)
+   primary key (S_ID),
+   key AK_S_PHONE (S_PHONE)
 );
 
 alter table INVENTORY add constraint FK_Reference_10 foreign key (M_ID)
@@ -123,16 +112,16 @@ alter table INVENTORY add constraint FK_Reference_13 foreign key (S_ID)
 alter table INVENTORY add constraint FK_Reference_9 foreign key (A_ID)
       references ADMINISTRATOR (A_ID) on delete restrict on update restrict;
 
-alter table "ORDER" add constraint FK_Reference_12 foreign key (S_ID)
+alter table `ORDER` add constraint FK_Reference_12 foreign key (S_ID)
       references SUPPLIER (S_ID) on delete restrict on update restrict;
 
-alter table "ORDER" add constraint FK_Reference_2 foreign key (C_ID)
+alter table `ORDER` add constraint FK_Reference_2 foreign key (C_ID)
       references CUSTOMER (C_ID) on delete restrict on update restrict;
 
-alter table "ORDER" add constraint FK_Reference_3 foreign key (A_ID)
+alter table `ORDER` add constraint FK_Reference_3 foreign key (A_ID)
       references ADMINISTRATOR (A_ID) on delete restrict on update restrict;
 
-alter table "ORDER" add constraint FK_Reference_6 foreign key (M_ID)
+alter table `ORDER` add constraint FK_Reference_6 foreign key (M_ID)
       references MEDICINE (M_ID) on delete restrict on update restrict;
 
 alter table PURCHASE add constraint FK_Reference_11 foreign key (S_ID)

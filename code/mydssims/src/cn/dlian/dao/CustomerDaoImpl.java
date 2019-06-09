@@ -22,10 +22,10 @@ public class CustomerDaoImpl implements ICustomerDao {
 	 * 客户登陆
 	 */
 	@Override
-	public boolean login(int id, String password) {
+	public boolean login(String phone, String password) {
 		String statement = "cn.dlian.entities.CustomerMapper.login";
 		Customer cus = new Customer();
-		cus.setId(id);
+		cus.setPhone(phone);
 		cus.setPassword(password);
 		cus = sqlSession.selectOne(statement, cus);
 		return cus!=null;
@@ -50,8 +50,11 @@ public class CustomerDaoImpl implements ICustomerDao {
 	@Override
 	public boolean addCustomer(Customer cus) {
 		String statement = "cn.dlian.entities.CustomerMapper.addCustomer";
-		int x = sqlSession.insert(statement,cus);
-		return x>0;
+		try {
+			return sqlSession.insert(statement,cus)>0;
+		}catch(Exception e) {
+			return false;
+		}
 	}
 
 	/**

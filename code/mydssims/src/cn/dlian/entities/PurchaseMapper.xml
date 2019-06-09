@@ -5,7 +5,7 @@
 	<!-- namespace作用是找到当前映射文件中的某个具体语句，其值唯一 -->
 <mapper namespace="cn.dlian.entities.PurchaseMapper">
 	<insert id="addPurchase" parameterType="cn.dlian.entities.Purchase">
-		insert into purchase values(#{id},#{aid},#{mid},#{sid},#{qty},#{dollars},#{transactionDate},#{state})
+		insert into purchase values(default,#{aid},#{mid},#{sid},#{qty},#{dollars},#{transactionDate},#{state})
 	</insert>
 	
 	<update id="updatePurchase" parameterType="hashmap">
