@@ -79,4 +79,17 @@ private SqlSession sqlSession;
 		return x>0;
 	}
 
+	/**
+	 * 将要售罄的药品
+	 */
+	@Override
+	public List<Inventory> queryWillSellOut(int aid, int limit) {
+		String statement = "cn.dlian.entities.Inventory.queryWillSellOut";
+		Map<String,Integer> map = new HashMap<>();
+		map.put("aid", aid);
+		map.put("limit", limit);
+		List<Inventory> invs = sqlSession.selectList(statement,map);
+		return invs;
+	}
+
 }

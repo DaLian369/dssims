@@ -9,4 +9,5 @@ public interface IInventoryDao {
 	boolean updateInventory(int aid,int mid,int sid,int value);
 	boolean addInventory(int aid,int mid,int sid,int count);
 	boolean deleteInventory(int aid,int mid,int sid);
+	List<Inventory> queryWillSellOut(int aid,int limit);
 }

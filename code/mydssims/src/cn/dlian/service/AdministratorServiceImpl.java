@@ -4,9 +4,9 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.dlian.dao.DaoFactory;
 import cn.dlian.dao.IAdministratorDao;
 import cn.dlian.dao.IInventoryDao;
+import cn.dlian.dao.IMedicineDao;
 import cn.dlian.dao.IOrderDao;
 import cn.dlian.dao.IPurchaseDao;
 import cn.dlian.entities.Administrator;
@@ -14,21 +14,53 @@ import cn.dlian.entities.Inventory;
 import cn.dlian.entities.Medicine;
 import cn.dlian.entities.Order;
 import cn.dlian.entities.Purchase;
+import cn.dlian.entities.User;
 
 @Transactional
 public class AdministratorServiceImpl implements IAdministratorService{
-	private DaoFactory daoFactory;
-	private IAdministratorDao admDao = daoFactory.getAdmDao();
-	private IInventoryDao invDao = daoFactory.getInvDao();
-	private IOrderDao orderDao = daoFactory.getOrderDao();
-	private IPurchaseDao purDao = daoFactory.getPurDao();
-
-	public DaoFactory getDaoFactory() {
-		return daoFactory;
+	private IAdministratorDao admDao;
+	private IMedicineDao medDao;
+	private IInventoryDao invDao;
+	private IOrderDao orderDao;
+	private IPurchaseDao purDao;
+	public IAdministratorDao getAdmDao() {
+		return admDao;
 	}
 
-	public void setDaoFactory(DaoFactory daoFactory) {
-		this.daoFactory = daoFactory;
+	public void setAdmDao(IAdministratorDao admDao) {
+		this.admDao = admDao;
+	}
+
+	public IMedicineDao getMedDao() {
+		return medDao;
+	}
+
+	public void setMedDao(IMedicineDao medDao) {
+		this.medDao = medDao;
+	}
+
+	public IInventoryDao getInvDao() {
+		return invDao;
+	}
+
+	public void setInvDao(IInventoryDao invDao) {
+		this.invDao = invDao;
+	}
+
+	public IOrderDao getOrderDao() {
+		return orderDao;
+	}
+
+	public void setOrderDao(IOrderDao orderDao) {
+		this.orderDao = orderDao;
+	}
+
+	public IPurchaseDao getPurDao() {
+		return purDao;
+	}
+
+	public void setPurDao(IPurchaseDao purDao) {
+		this.purDao = purDao;
 	}
 
 	/**
@@ -59,15 +91,18 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 * 登陆
 	 */
 	@Override
-	public boolean login(String phone, String password) {
+	public User login(String phone, String password) {
 		return admDao.login(phone, password);
 	}
 
 	/**
 	 * 修改密码
+	 * 在js里先判断密码格式
+	 * 在controller里判断密码是否和cookie里的值相同
+	 * 在service力直接修改密码
 	 */
 	@Override
-	public boolean updatePassword(int id, String newPass) {
+	public boolean updatePassword(int id,String newPass) {
 		return admDao.updatePassword(id, newPass);
 	}
 
@@ -78,8 +113,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public boolean addMedicine(Medicine med) {
-		// TODO Auto-generated method stub
-		return false;
+		return medDao.addMedicine(med);
 	}
 	
 	/**
@@ -88,18 +122,16 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 * (也就是说，Medicine里的药品信息只会多不会少
 	 */
 	@Override
-	public boolean deleteMedicine(int mid) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean deleteInventory(int aid,int mid,int sid) {
+		return invDao.deleteInventory(aid, mid, sid);
 	}
 
 	/**
 	 * 修改药品信息
 	 */
 	@Override
-	public boolean updateMedicine(Medicine mmed) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean updateMedicine(Medicine med) {
+		return medDao.updateMedicine(med);
 	}
 
 	/**
@@ -107,8 +139,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public Medicine queryMedicine(int mid) {
-		// TODO Auto-generated method stub
-		return null;
+		return medDao.queryMedicine(mid);
 	}
 
 	/**
@@ -116,8 +147,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public List<Medicine> fuzzyQuery(String msg) {
-		// TODO Auto-generated method stub
-		return null;
+		return medDao.fuzzyQuery(msg);
 	}
 
 	/**
@@ -125,8 +155,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public List<Order> queryOrdersByAid(int aid) {
-		// TODO Auto-generated method stub
-		return null;
+		return orderDao.queryOrdersByAid(aid);
 	}
 
 	/**
@@ -134,8 +163,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public List<Order> queryOrdersByAidPaid(int aid) {
-		// TODO Auto-generated method stub
-		return null;
+		return orderDao.queryOrdersByAidPaid(aid);
 	}
 
 	/**
@@ -143,8 +171,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public List<Order> queryOrdersByAidWait(int aid) {
-		// TODO Auto-generated method stub
-		return null;
+		return orderDao.queryOrdersByAidWait(aid);
 	}
 
 	/**
@@ -152,8 +179,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public List<Order> queryOrdersByAidCid(int aid, int cid) {
-		// TODO Auto-generated method stub
-		return null;
+		return orderDao.queryOrdersByAidCid(aid, cid);
 	}
 
 	/**
@@ -161,8 +187,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public Order queryOrderByOid(int oid) {
-		// TODO Auto-generated method stub
-		return null;
+		return orderDao.queryOrderByOid(oid);
 	}
 
 	/**
@@ -170,8 +195,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public List<Purchase> queryPurchasesByAid(int aid) {
-		// TODO Auto-generated method stub
-		return null;
+		return purDao.queryPurchasesByAid(aid);
 	}
 
 	/**
@@ -179,8 +203,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public List<Purchase> queryPurchasesByAidPaid(int aid) {
-		// TODO Auto-generated method stub
-		return null;
+		return purDao.queryPurchasesByAidPaid(aid);
 	}
 
 	/**
@@ -188,8 +211,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public List<Purchase> queryPurchasesByAidWait(int aid) {
-		// TODO Auto-generated method stub
-		return null;
+		return purDao.queryPurchasesByAidWait(aid);
 	}
 
 	/**
@@ -197,8 +219,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public List<Purchase> queryPurchasesBySidAid(int sid, int aid) {
-		// TODO Auto-generated method stub
-		return null;
+		return purDao.queryPurchasesBySidAid(sid, aid);
 	}
 
 	/**
@@ -206,8 +227,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public Purchase queryPurchaseByPid(int pid) {
-		// TODO Auto-generated method stub
-		return null;
+		return purDao.queryPurchaseByPid(pid);
 	}
 
 	/**
@@ -215,29 +235,37 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public List<Inventory> queryInventory(int aid, int mid, int sid) {
-		// TODO Auto-generated method stub
-		return null;
+		return invDao.queryInventory(aid, mid, sid);
 	}
 
 	/**
 	 * 下采购单
 	 */
 	@Override
-	public boolean placeOnPurcahse(Purchase pur) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean placeOnPurchase(Purchase pur) {
+		return purDao.addPurchase(pur);
 	}
 
 	/**
 	 * 付款
 	 * 1.修改采购单
-	 * 2.(若是自家新药品)发布药品信息
-	 * 3.(若不是自家新药品)直接添加库存
+	 * 2.若不是自家新药品,直接更新库存
+	 * 3.若是自家新药品，需要添加库存信息
 	 */
 	@Override
 	public boolean payment(int pid) {
-		// TODO Auto-generated method stub
-		return false;
+		Purchase pur = purDao.queryPurchaseByPid(pid);
+		purDao.updatePurchase(pid, 1);
+		List<Inventory> invs = invDao.queryInventory(pur.getAid(), pur.getMid(), pur.getSid());
+		boolean bo =false;
+		if(invs.size()!=0&&invs.get(0).getCount()>=pur.getQty()) {
+			invDao.updateInventory(pur.getAid(), pur.getMid(), pur.getSid(), pur.getQty());
+			bo = true;
+		}else if(invs.size()==0) {
+			invDao.addInventory(pur.getAid(), pur.getMid(), pur.getSid(), pur.getQty());
+			bo = true;
+		}
+		return bo;
 	}
 
 	/**
@@ -245,7 +273,6 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 */
 	@Override
 	public boolean canclePurchase(int pid) {
-		// TODO Auto-generated method stub
-		return false;
+		return purDao.deletePurchase(pid);
 	}
 }

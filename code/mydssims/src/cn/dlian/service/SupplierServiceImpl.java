@@ -4,26 +4,33 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.dlian.dao.DaoFactory;
-import cn.dlian.dao.IInventoryDao;
-import cn.dlian.dao.IOrderDao;
 import cn.dlian.dao.IPurchaseDao;
 import cn.dlian.dao.ISupplierDao;
 import cn.dlian.entities.Purchase;
 import cn.dlian.entities.Supplier;
+import cn.dlian.entities.User;
 
 @Transactional
 public class SupplierServiceImpl implements ISupplierService {
 
-	private DaoFactory daoFactory;
-	private ISupplierDao supDao = daoFactory.getSupDao();
-	private IPurchaseDao purDao = daoFactory.getPurDao();
-	public DaoFactory getDaoFactory() {
-		return daoFactory;
+	private ISupplierDao supDao;
+	private IPurchaseDao purDao;
+	
+
+	public ISupplierDao getSupDao() {
+		return supDao;
 	}
 
-	public void setDaoFactory(DaoFactory daoFactory) {
-		this.daoFactory = daoFactory;
+	public void setSupDao(ISupplierDao supDao) {
+		this.supDao = supDao;
+	}
+
+	public IPurchaseDao getPurDao() {
+		return purDao;
+	}
+
+	public void setPurDao(IPurchaseDao purDao) {
+		this.purDao = purDao;
 	}
 
 	/**
@@ -38,7 +45,7 @@ public class SupplierServiceImpl implements ISupplierService {
 	 * 供应商登陆
 	 */
 	@Override
-	public boolean login(String phone, String password) {
+	public User login(String phone, String password) {
 		return supDao.login(phone, password);
 	}
 
@@ -72,8 +79,7 @@ public class SupplierServiceImpl implements ISupplierService {
 	 */
 	@Override
 	public List<Purchase> queryPurchasesBySid(int sid) {
-		// TODO Auto-generated method stub
-		return null;
+		return purDao.queryPurchasesBySid(sid);
 	}
 
 	/**
@@ -81,8 +87,7 @@ public class SupplierServiceImpl implements ISupplierService {
 	 */
 	@Override
 	public List<Purchase> queryPurchasesBySidPaid(int sid) {
-		// TODO Auto-generated method stub
-		return null;
+		return purDao.queryPurchasesBySidPaid(sid);
 	}
 
 	/**
@@ -90,8 +95,7 @@ public class SupplierServiceImpl implements ISupplierService {
 	 */
 	@Override
 	public List<Purchase> queryPurchasesBySidWait(int sid) {
-		// TODO Auto-generated method stub
-		return null;
+		return purDao.queryPurchasesBySidWait(sid);
 	}
 
 	

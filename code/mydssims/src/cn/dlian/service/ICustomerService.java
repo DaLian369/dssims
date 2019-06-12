@@ -13,7 +13,7 @@ public interface ICustomerService extends IUserService {
 	boolean placeOnOrder(Order order);
 	boolean payment(int oid);
 	boolean cancleOrder(int oid);
-	List<Medicine> queryMedicine(int aid,int mid,int sid);
+	Medicine queryMedicine(int mid);
 	List<Medicine> fuzzyQuery(String msg);
 	List<Order> queryOrdersByCid(int cid);
 	List<Order> queryOrdersByCidPaid(int cid);

@@ -14,9 +14,9 @@ public class Supplier extends User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Supplier(int id, String name, String password, String phone,String city) {
-		super(id, name, password, phone);
+	
+	public Supplier(String name, String password, String phone,String city) {
+		super(name, password, phone);
 		this.city = city;
 		// TODO Auto-generated constructor stub
 	}

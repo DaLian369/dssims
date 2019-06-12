@@ -12,9 +12,8 @@ public class Order extends Purchase {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
-	public Order(int id, int cid,int aid, int mid, int sid, int qty, float dollars, Date transactionDate, int state) {
-		super(id, aid, mid, sid, qty, dollars, transactionDate, state);
+	public Order(int cid,int aid, int mid, int sid, int qty, float dollars, Date transactionDate, int state) {
+		super(aid, mid, sid, qty, dollars, transactionDate, state);
 		this.cid = cid;
 		// TODO Auto-generated constructor stub
 	}

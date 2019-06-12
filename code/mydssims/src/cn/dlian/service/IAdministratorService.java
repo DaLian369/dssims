@@ -13,7 +13,7 @@ public interface IAdministratorService extends IUserService {
 	Administrator queryInfo(int id);
 	boolean updateInfo(Administrator adm);
 	boolean addMedicine(Medicine med);
-	boolean deleteMedicine(int mid);
+	boolean deleteInventory(int aid,int mid,int sid);
 	boolean updateMedicine(Medicine mmed);
 	Medicine queryMedicine(int mid);
 	List<Medicine> fuzzyQuery(String msg);
@@ -28,7 +28,7 @@ public interface IAdministratorService extends IUserService {
 	List<Purchase> queryPurchasesBySidAid(int sid,int aid);
 	Purchase queryPurchaseByPid(int pid);
 	List<Inventory> queryInventory(int aid,int mid,int sid);
-	boolean placeOnPurcahse(Purchase pur);
+	boolean placeOnPurchase(Purchase pur);
 	boolean payment(int pid);
 	boolean canclePurchase(int pid);
 }

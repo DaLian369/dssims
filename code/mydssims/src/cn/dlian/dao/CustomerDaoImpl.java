@@ -3,8 +3,8 @@ package cn.dlian.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.dlian.entities.Administrator;
 import cn.dlian.entities.Customer;
+import cn.dlian.entities.User;
 
 @Transactional
 public class CustomerDaoImpl implements ICustomerDao {
@@ -22,13 +22,13 @@ public class CustomerDaoImpl implements ICustomerDao {
 	 * 客户登陆
 	 */
 	@Override
-	public boolean login(String phone, String password) {
+	public User login(String phone, String password) {
 		String statement = "cn.dlian.entities.CustomerMapper.login";
 		Customer cus = new Customer();
 		cus.setPhone(phone);
 		cus.setPassword(password);
 		cus = sqlSession.selectOne(statement, cus);
-		return cus!=null;
+		return cus;
 	}
 
 	/**

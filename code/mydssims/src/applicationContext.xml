@@ -74,13 +74,22 @@
     <!-- Service层 -->
     <bean id="admService" class="cn.dlian.service.AdministratorServiceImpl"
           p:admDao-ref="admDao"
+          p:medDao-ref="medDao"
+          p:orderDao-ref="orderDao"
+          p:purDao-ref="purDao"
+          p:invDao-ref="invDao"
     />
     <bean id="cusService" class="cn.dlian.service.CustomerServiceImpl"
           p:cusDao-ref="cusDao"
+          p:medDao-ref="medDao"
+          p:orderDao-ref="orderDao"
+          p:invDao-ref="invDao"
     />
     <bean id="supService" class="cn.dlian.service.SupplierServiceImpl"
           p:supDao-ref="supDao"
+          p:purDao-ref="purDao"
     />
+    <!-- 
     <bean id="medService" class="cn.dlian.service.MedicineServiceImpl"
           p:medDao-ref="medDao"
     />
@@ -92,7 +101,7 @@
     />
     <bean id="invService" class="cn.dlian.service.InventoryServiceImpl"
           p:invDao-ref="invDao"
-    />
+    /> -->
     
     <!-- 工厂 -->
     <bean id="daoFactory" class="cn.dlian.dao.DaoFactory"
@@ -108,9 +117,6 @@
     	p:admService-ref="admService"
     	p:cusService-ref="cusService"
     	p:supService-ref="supService"
-    	p:medService-ref="medService"
-    	p:orderService-ref="orderService"
-    	p:purService-ref="purService"
-    	p:invService-ref="invService"
     />
+    
 </beans>

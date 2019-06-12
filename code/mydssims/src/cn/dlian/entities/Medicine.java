@@ -19,9 +19,8 @@ public class Medicine{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Medicine(int id, String name, String type, float price, Date productionDate, String qualityGuaranteePeriod) {
+	public Medicine( String name, String type, float price, Date productionDate, String qualityGuaranteePeriod) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.type = type;
 		this.price = price;

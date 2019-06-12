@@ -1,6 +1,8 @@
 package cn.dlian.service;
 
+import cn.dlian.entities.User;
+
 public interface IUserService {
-	boolean login(String phone,String password);
+	User login(String phone,String password);
 	boolean updatePassword(int id,String newPass);
 }

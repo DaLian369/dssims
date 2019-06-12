@@ -29,6 +29,9 @@
 	</update>
 	
 	<update id="updateInfo" parameterType="cn.dlian.entities.Supplier">
-		update supplier set S_NAME=#{name},S_PHONE=#{phone},S_CITY=#{city} where S_ID=#{id}
+		update supplier set 
+		<if test="name!=null">S_NAME=#{name}</if>
+		<if test="phone!=null">, S_PHONE=#{phone}</if>
+		<if test="city!=null">, S_CITY=#{city}</if> where S_ID=#{id}
 	</update>
 </mapper>

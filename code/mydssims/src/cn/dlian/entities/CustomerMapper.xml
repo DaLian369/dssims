@@ -28,6 +28,9 @@
 	</update>
 	
 	<update id="updateInfo" parameterType="cn.dlian.entities.Customer">
-		update customer set C_NAME=#{name},C_PHONE=#{phone} where C_ID=#{id}
+		update customer set 
+		<if test="name!=null">C_NAME=#{name}</if>
+		<if test="phone!=null">, C_PHONE=#{phone}</if> 
+		where C_ID=#{id}
 	</update>
 </mapper>

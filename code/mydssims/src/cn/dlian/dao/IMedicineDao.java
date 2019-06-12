@@ -9,5 +9,5 @@ public interface IMedicineDao {
 	boolean deleteMedicine(int id);
 	boolean updateMedicine(Medicine med);
 	Medicine queryMedicine(int mid);
-	List<Medicine> fuzzyQuery(String meg);
+	List<Medicine> fuzzyQuery(String msg);
 }

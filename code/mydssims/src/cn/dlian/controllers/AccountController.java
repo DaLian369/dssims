@@ -1,6 +1,9 @@
 package cn.dlian.controllers;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,23 +51,30 @@ public class AccountController {
 
 
 	@RequestMapping("login")
-	public ModelAndView login(@RequestParam String id,@RequestParam String password,@RequestParam String identity,HttpServletRequest request) {
-		boolean bo=false;
-		ModelAndView mav = new ModelAndView("login.jsp");
+	public ModelAndView login(@RequestParam String id,@RequestParam String password,@RequestParam String identity,
+			HttpServletRequest request,HttpServletResponse response) {
+		ModelAndView mav = new ModelAndView("index.jsp");
 		if(identity.equals("cus")) {
-			bo = cusService.login(id, password);
-			if(bo) {
-				mav = new ModelAndView("WEB-INF/zcustomer/index.jsp");
+			Customer cus = (Customer)cusService.login(id, password);
+			if(cus!=null) {
+				mav = new ModelAndView("zcustomer/index.form");
+				Cookie cookie1 = new Cookie("id",cus.getId()+"");
+				response.addCookie(cookie1);
+				HttpSession session = request.getSession();
+				session.setAttribute("cus", cus);
+				mav.addObject(cus);
 			}
 		}else if(identity.equals("adm")) {
-			bo = admService.login(id, password);
-			if(bo) {
-				mav = new ModelAndView("WEB-INF/zadministrator/index.jsp");
+			Administrator adm = (Administrator)admService.login(id, password);
+			if(adm!=null) {
+				mav = new ModelAndView("zadministrator/index.form");
+				mav.addObject(adm);
 			}
 		}else {
-			bo = supService.login(id, password);
-			if(bo) {
-				mav = new ModelAndView("WEB-INF/zsupplier/index.jsp");
+			Supplier sup = (Supplier)supService.login(id, password);
+			if(sup!=null) {
+				mav = new ModelAndView("zsupplier/index.form");
+				mav.addObject(sup);
 			}
 		}
 		return mav;
@@ -74,17 +84,44 @@ public class AccountController {
 	public ModelAndView regist(@RequestParam String name,@RequestParam String password,
 			@RequestParam String phone,@RequestParam(required=false)String city,@RequestParam String identity,HttpServletRequest request) {
 		boolean bo=false;
-		ModelAndView mav = new ModelAndView("login.jsp");
+		ModelAndView mav = new ModelAndView("index.jsp");
 		if(identity.equals("cus")) {
-			Customer cus = new Customer(0,name,password,phone);
-			cusService.regist(cus);
+			Customer cus = new Customer(name,password,phone);
+			bo = cusService.regist(cus);
 		}else if(identity.equals("adm")) {
-			Administrator adm = new Administrator(0,name,password,phone);
-			admService.regist(adm);
+			Administrator adm = new Administrator(name,password,phone);
+			bo = admService.regist(adm);
 		}else {
-			Supplier sup = new Supplier(0,name,password,phone,city);
-			supService.regist(sup);
+			Supplier sup = new Supplier(name,password,phone,city);
+			bo = supService.regist(sup);
 		}
+		if(bo) {
+			mav.addObject("msg", "注册成功!");
+		}else {
+			mav.addObject("msg", "电话号码已注册!");
+		}
+		return mav;
+	}
+	
+	@RequestMapping("staticRegist")
+	public ModelAndView staticRegist() {
+		return new ModelAndView("WEB-INF/staticRegist.jsp");
+	}
+	
+	@RequestMapping("staticLogin")
+	public ModelAndView staticLogin() {
+		return new ModelAndView("WEB-INF/staticLogin.jsp");
+	}
+	
+	/**
+	 * 访问登陆界面
+	 * 退出的时候返回登陆界面，需要删除session里的东西
+	 */
+	@RequestMapping("index")
+	public ModelAndView index(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("index.jsp");
+		HttpSession session = request.getSession();
+		session.removeAttribute("cus");
 		return mav;
 	}
 }

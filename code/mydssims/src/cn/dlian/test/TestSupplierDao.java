@@ -12,7 +12,7 @@ import cn.dlian.entities.Customer;
 import cn.dlian.entities.Supplier;
 
 
-public class TestSupplier {
+public class TestSupplierDao {
 	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	ISupplierDao supDao = ((DaoFactory)context.getBean("daoFactory")).getSupDao();
 	
@@ -24,13 +24,13 @@ public class TestSupplier {
 	
 	@Test
 	public void testLogin() {
-		boolean bo = supDao.login("18702729676", "123456");
-		System.out.println(bo);
+		Supplier sup = (Supplier)supDao.login("18702729676", "123456");
+		System.out.println(sup);
 	}
 	
 	@Test
 	public void testAddSuppier() {
-		Supplier sup = new Supplier(0,"赵柱","123456","18706729671","西安");
+		Supplier sup = new Supplier("赵柱","123456","18706729671","西安");
 		boolean bo = supDao.addSupplier(sup);
 		System.out.println(bo);
 	}
@@ -43,7 +43,7 @@ public class TestSupplier {
 	
 	@Test
 	public void testUpdateInfo() {
-		Supplier sup = new Supplier(1,"王斌","","18706729611","西安");
+		Supplier sup = new Supplier("王斌","","18706729611","西安");
 //		Supplier sup = new Supplier(1002,"赵铁","123456","18706729691");
 		boolean bo = supDao.updateInfo(sup);
 		System.out.println(bo);

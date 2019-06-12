@@ -20,7 +20,7 @@ public class Purchase{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Purchase(int id, int aid, int mid, int sid, int qty, float dollars, Date transactionDate, int state) {
+	public Purchase(int aid, int mid, int sid, int qty, float dollars, Date transactionDate, int state) {
 		super();
 		this.id = id;
 		this.aid = aid;

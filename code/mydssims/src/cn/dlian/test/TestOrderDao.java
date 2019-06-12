@@ -11,32 +11,32 @@ import cn.dlian.dao.DaoFactory;
 import cn.dlian.dao.IOrderDao;
 import cn.dlian.entities.Order;
 
-public class TestOrder {
+public class TestOrderDao {
 	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	IOrderDao orderDao = ((DaoFactory)context.getBean("daoFactory")).getOrderDao();
 	
 	@Test
 	public void addOrder() {
-		Order order = new Order(1, 1, 1, 1, 1, 10, 100, new Date(new java.util.Date().getTime()), 1);
+		Order order = new Order( 1, 1, 1, 1, 10, 100, new Date(new java.util.Date().getTime()), 1);
 		boolean bo= orderDao.addOrder(order);
 		System.out.println(bo);
 	}
 	
 	@Test
 	public void updateOrder() {
-		boolean bo = orderDao.updateOrder(1001, 2);
+		boolean bo = orderDao.updateOrder(1, 2);
 		System.out.println(bo);
 	}
 	
 	@Test
 	public void deleteOrder() {
-		boolean bo = orderDao.deleteOrder(1001);
+		boolean bo = orderDao.deleteOrder(1);
 		System.out.println(bo);
 	}
 	
 	@Test
 	public void queryOrdersByCid(){
-		List<Order> orders = orderDao.queryOrdersByCid(1001);
+		List<Order> orders = orderDao.queryOrdersByCid(1);
 		for (Order order : orders) {
 			System.out.println(order);
 		}
@@ -44,7 +44,7 @@ public class TestOrder {
 	
 	@Test
 	public void queryOrdersByCidPaid() {
-		List<Order> orders = orderDao.queryOrdersByCidPaid(1001);
+		List<Order> orders = orderDao.queryOrdersByCidPaid(1);
 		for (Order order : orders) {
 			System.out.println(order);
 		}
@@ -52,7 +52,7 @@ public class TestOrder {
 	
 	@Test
 	public void queryOrdersByCidWait() {
-		List<Order> orders = orderDao.queryOrdersByCidWait(1001);
+		List<Order> orders = orderDao.queryOrdersByCidWait(1);
 		for (Order order : orders) {
 			System.out.println(order);
 		}
@@ -60,13 +60,13 @@ public class TestOrder {
 	
 	@Test
 	public void queryOrderByOid() {
-		Order order = orderDao.queryOrderByOid(1001);
+		Order order = orderDao.queryOrderByOid(1);
 		System.out.println(order);
 	}
 	
 	@Test
 	public void queryOrdersByAid() {
-		List<Order> orders = orderDao.queryOrdersByAid(1001);
+		List<Order> orders = orderDao.queryOrdersByAid(1);
 		for (Order order : orders) {
 			System.out.println(order);
 		}
@@ -74,7 +74,7 @@ public class TestOrder {
 	
 	@Test
 	public void queryOrdersByAidPaid() {
-		List<Order> orders = orderDao.queryOrdersByAidPaid(1001);
+		List<Order> orders = orderDao.queryOrdersByAidPaid(1);
 		for (Order order : orders) {
 			System.out.println(order);
 		}
@@ -82,7 +82,7 @@ public class TestOrder {
 	
 	@Test
 	public void queryOrdersByAidWait() {
-		List<Order> orders = orderDao.queryOrdersByAidWait(1001);
+		List<Order> orders = orderDao.queryOrdersByAidWait(1);
 		for (Order order : orders) {
 			System.out.println(order);
 		}
@@ -90,7 +90,7 @@ public class TestOrder {
 	
 	@Test
 	public void queryOrdersByAidCid() {
-		List<Order> orders = orderDao.queryOrdersByAidCid(1001,1001);
+		List<Order> orders = orderDao.queryOrdersByAidCid(1,1);
 		for (Order order : orders) {
 			System.out.println(order);
 		}

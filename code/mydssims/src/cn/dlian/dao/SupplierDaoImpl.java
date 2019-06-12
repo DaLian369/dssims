@@ -4,6 +4,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.dlian.entities.Supplier;
+import cn.dlian.entities.User;
 
 @Transactional
 public class SupplierDaoImpl implements ISupplierDao {
@@ -33,13 +34,13 @@ public class SupplierDaoImpl implements ISupplierDao {
 	 * 供应商登陆
 	 */
 	@Override
-	public boolean login(String phone, String password) {
+	public User login(String phone, String password) {
 		String statement = "cn.dlian.entities.SupplierMapper.login";
 		Supplier sup = new Supplier();
 		sup.setPhone(phone);
 		sup.setPassword(password);
 		sup = sqlSession.selectOne(statement,sup);
-		return sup!=null;
+		return sup;
 	}
 
 	/**

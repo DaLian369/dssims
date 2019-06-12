@@ -4,33 +4,59 @@ import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.dlian.dao.DaoFactory;
 import cn.dlian.dao.ICustomerDao;
 import cn.dlian.dao.IInventoryDao;
+import cn.dlian.dao.IMedicineDao;
 import cn.dlian.dao.IOrderDao;
 import cn.dlian.entities.Customer;
 import cn.dlian.entities.Medicine;
 import cn.dlian.entities.Order;
+import cn.dlian.entities.User;
 
 @Transactional
 public class CustomerServiceImpl implements ICustomerService {
-	private DaoFactory daoFactory;
-	private ICustomerDao cusDao = daoFactory.getCusDao();
-	private IOrderDao orderDao = daoFactory.getOrderDao();
-	private IInventoryDao invDao = daoFactory.getInvDao();
-	public DaoFactory getDaoFactory() {
-		return daoFactory;
+	private ICustomerDao cusDao;
+	private IMedicineDao medDao;
+	private IOrderDao orderDao;
+	private IInventoryDao invDao;
+	
+	public ICustomerDao getCusDao() {
+		return cusDao;
 	}
 
-	public void setDaoFactory(DaoFactory daoFactory) {
-		this.daoFactory = daoFactory;
+	public void setCusDao(ICustomerDao cusDao) {
+		this.cusDao = cusDao;
+	}
+
+	public IMedicineDao getMedDao() {
+		return medDao;
+	}
+
+	public void setMedDao(IMedicineDao medDao) {
+		this.medDao = medDao;
+	}
+
+	public IOrderDao getOrderDao() {
+		return orderDao;
+	}
+
+	public void setOrderDao(IOrderDao orderDao) {
+		this.orderDao = orderDao;
+	}
+
+	public IInventoryDao getInvDao() {
+		return invDao;
+	}
+
+	public void setInvDao(IInventoryDao invDao) {
+		this.invDao = invDao;
 	}
 
 	/**
 	 * 客户登陆
 	 */
 	@Override
-	public boolean login(String phone, String password) {
+	public User login(String phone, String password) {
 		return cusDao.login(phone, password);
 	}
 
@@ -71,18 +97,26 @@ public class CustomerServiceImpl implements ICustomerService {
 	 */
 	@Override
 	public boolean placeOnOrder(Order order) {
-		// TODO Auto-generated method stub
-		return false;
+		return orderDao.addOrder(order);
 	}
 
 	/**
 	 * 付款
 	 * 1.修改订单
 	 * 2.减少库存(invDao)
+	 * @throws Exception 
 	 */
 	@Override
-	public boolean payment(int oid) {
-		// TODO Auto-generated method stub
+	public boolean payment(int oid){
+		//查询到订单信息
+		Order order = orderDao.queryOrderByOid(oid);
+		if(order!=null) {
+			//1.付款
+			orderDao.updateOrder(oid, 1);
+			//2.减少库存
+			invDao.updateInventory(order.getAid(), order.getMid(), order.getSid(), order.getQty()*(-1));
+			return true;
+		}
 		return false;
 	}
 
@@ -91,26 +125,24 @@ public class CustomerServiceImpl implements ICustomerService {
 	 */
 	@Override
 	public boolean cancleOrder(int oid) {
-		// TODO Auto-generated method stub
-		return false;
+		return orderDao.deleteOrder(oid);
 	}
 
 	/**
 	 * 精确查询药品
 	 */
 	@Override
-	public List<Medicine> queryMedicine(int aid, int mid, int sid) {
-		// TODO Auto-generated method stub
-		return null;
+	public Medicine queryMedicine(int mid) {
+		return medDao.queryMedicine(mid);
 	}
 
 	/**
 	 * 模糊查询
+	 * 查询药品信息，通过返回的药品信息，查看出售的管理员及厂商
 	 */
 	@Override
 	public List<Medicine> fuzzyQuery(String msg) {
-		// TODO Auto-generated method stub
-		return null;
+		return medDao.fuzzyQuery(msg);
 	}
 
 	/**
@@ -118,8 +150,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	 */
 	@Override
 	public List<Order> queryOrdersByCid(int cid) {
-		// TODO Auto-generated method stub
-		return null;
+		return orderDao.queryOrdersByCid(cid);
 	}
 
 	/**
@@ -127,8 +158,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	 */
 	@Override
 	public List<Order> queryOrdersByCidPaid(int cid) {
-		// TODO Auto-generated method stub
-		return null;
+		return orderDao.queryOrdersByCidPaid(cid);
 	}
 
 	/**
@@ -136,8 +166,7 @@ public class CustomerServiceImpl implements ICustomerService {
 	 */
 	@Override
 	public List<Order> queryOrdersByCidWait(int cid) {
-		// TODO Auto-generated method stub
-		return null;
+		return orderDao.queryOrdersByCidWait(cid);
 	}
 
 }

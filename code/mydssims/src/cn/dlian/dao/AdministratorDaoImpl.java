@@ -1,10 +1,10 @@
 package cn.dlian.dao;
 
 import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.dlian.entities.Administrator;
+import cn.dlian.entities.User;
 
 @Transactional
 public class AdministratorDaoImpl implements IAdministratorDao {
@@ -17,7 +17,7 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		this.sqlSession = sqlSession;
 	}
 
-	/**
+	/** 8
 	 * 查询管理员信息
 	 */
 	@Override
@@ -34,13 +34,13 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 	 * 管理员登陆
 	 */
 	@Override
-	public boolean login(String phone, String password) {
+	public User login(String phone, String password) {
 		String statement = "cn.dlian.entities.AdministratorMapper.login";
 		Administrator adm = new Administrator();
 		adm.setPhone(phone);
 		adm.setPassword(password);
 		adm = sqlSession.selectOne(statement, adm);
-		return adm!=null;
+		return adm;
 	}
 
 	/**

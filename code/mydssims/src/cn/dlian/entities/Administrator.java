@@ -7,6 +7,7 @@ import java.util.Map;
  * 管理员/药铺类
  */
 public class Administrator extends User {
+	private int limit;
 	private List<Order> orders;
 	private List<Purchase> purchases;
 	private List<Inventory> inventories;
@@ -16,11 +17,18 @@ public class Administrator extends User {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Administrator(int id, String name, String password, String phone) {
-		super(id, name, password, phone);
+	public Administrator(String name, String password, String phone) {
+		super(name, password, phone);
+		limit = 20;
 		// TODO Auto-generated constructor stub
 	}
 	
+	public int getLimit() {
+		return limit;
+	}
+	public void setLimit(int limit) {
+		this.limit = limit;
+	}
 	public List<Order> getOrders() {
 		return orders;
 	}

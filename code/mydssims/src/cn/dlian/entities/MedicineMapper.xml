@@ -13,7 +13,13 @@
 	</delete>
 	
 	<update id="updateMedicine" parameterType="cn.dlian.entities.Medicine">
-		update medicine set M_NAME=#{name},M_TYPE=#{type},M_PRICE=#{price},M_PRODUCTION_DATE=#{productionDate},M_QUALITY_GUARANTEE_PERIOD=#{qualityGuaranteePeriod}
+		update medicine set 
+		<if test="name!=null">M_NAME=#{name}</if>
+		<if test="type!=null">,M_TYPE=#{type}</if>
+		<if test="price!=null">,M_PRICE=#{price}</if>
+		<if test="productionDate!=null">,M_PRODUCTION_DATE=#{productionDate}</if>
+		<if test="qualityGuaranteePeriod!=null">,M_QUALITY_GUARANTEE_PERIOD=#{qualityGuaranteePeriod}</if>
+		where M_ID = #{id}
 	</update>
 	
 	<resultMap id="medResultMap" type="cn.dlian.entities.Medicine">
@@ -26,10 +32,10 @@
 	</resultMap>
 	
 	<select id="queryMedicine" parameterType="int" resultMap="medResultMap">
-		select * from medicine where M_ID=#{mid}
+		select * from medicine where M_ID = #{mid}
 	</select>
 	
-	<select id="fuzzyQuery" parameterType="cn.dlian.entities.Medicine" resultMap="medResultMap">
-		select * from medicine where M_NAME like #{meg} or M_TYPE = #{meg}
+	<select id="fuzzyQuery" parameterType="string" resultMap="medResultMap">
+		select * from medicine where M_NAME like #{msg} or M_TYPE like #{msg}
 	</select>
 </mapper>

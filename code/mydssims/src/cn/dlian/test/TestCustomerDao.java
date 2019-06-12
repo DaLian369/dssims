@@ -10,11 +10,10 @@ import cn.dlian.dao.ICustomerDao;
 import cn.dlian.entities.Customer;
 import cn.dlian.entities.Order;
 
-public class TestCustomer {
+public class TestCustomerDao {
 	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
 	ICustomerDao cusDao = ((DaoFactory)context.getBean("daoFactory")).getCusDao();
 	@Test
-//	@Ignore
 	public void testQueryInfo() {
 		Customer cus = cusDao.queryInfo(1);
 		System.out.println(cus);
@@ -22,28 +21,28 @@ public class TestCustomer {
 	
 	@Test
 	public void testLogin() {
-		boolean bo = cusDao.login("18736729676", "123456");
-		System.out.println(bo);
+		Customer cus = (Customer)cusDao.login("18736729676", "123456");
+		System.out.println(cus);
 	}
 	
 	@Test
-//	@Ignore
 	public void testRegist() {
-		Customer cus = new Customer(0,"铁柱","123456","18706729691");
+		Customer cus = new Customer("铁柱","123456","18706729691");
 		boolean bo = cusDao.addCustomer(cus);
 		System.out.println(bo);
 	}
 	
 	@Test
-//	@Ignore
 	public void testUpdatePassword() {
-		boolean bo = cusDao.updatePassword(0, "123456");
+		boolean bo = cusDao.updatePassword(1, "123456");
 		System.out.println(bo);
 	}
 	
 	@Test
 	public void testUpdateInfo() {
-		Customer cus = new Customer(0,"王强斌","","18706729611");
+		Customer cus = new Customer();
+		cus.setId(1);
+		cus.setName("xuelei");
 //		Customer cus = new Customer(1002,"赵铁柱","123456","18706729691");
 		boolean bo = cusDao.updateInfo(cus);
 		System.out.println(bo);

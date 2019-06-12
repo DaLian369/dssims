@@ -40,4 +40,10 @@
 			where i.A_ID=a.A_ID and i.M_ID=m.M_ID and i.S_ID=s.S_ID
 			and i.A_ID=#{aid} and i.M_ID=#{mid} and i.S_ID=#{sid};
 	</select> 
+	
+	<select id="queryWillSellOut" parameterType="hashmap" resultMap="invResultMap">
+		select * from inventory i,administrator a,medicine m, supplier s 
+			where i.A_ID=a.A_ID and i.M_ID=m.M_ID and i.S_ID=s.S_ID
+			and i.A_ID=#{aid} and i.A_COUNT less than #{limit}
+	</select>
 </mapper>

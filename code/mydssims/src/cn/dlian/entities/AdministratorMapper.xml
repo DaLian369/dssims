@@ -12,6 +12,7 @@
 		<result property="name" column="A_NAME"/>
 		<result property="password" column="A_PASSWORD"/>
 		<result property="phone" column="A_PHONE"/>
+		<result property="limit" column="A_LIMIT"/>
 	</resultMap>
 	
 	<select id="login" parameterType="cn.dlian.entities.Administrator" resultMap="administratorResultMap">
@@ -19,7 +20,7 @@
 	</select>
 	
 	<insert id="addAdministrator" parameterType="cn.dlian.entities.Administrator">
-		insert into administrator values(default,#{password},#{name},#{phone})
+		insert into administrator values(default,#{password},#{name},#{phone},#{limit})
 	</insert>
 	
 	<update id="updatePassword" parameterType="cn.dlian.entities.Administrator">
@@ -27,6 +28,9 @@
 	</update>
 	
 	<update id="updateInfo" parameterType="cn.dlian.entities.Administrator">
-		update administrator set A_NAME=#{name},A_PHONE=#{phone} where A_ID=#{id}
+		update administrator set 
+		<if test="name!=null">A_NAME=#{name}</if>
+		<if test="phone!=null">, A_PHONE=#{phone}</if>
+		<if test="limit!=null">, A_LIMIT=#{limit}</if> where A_ID=#{id}
 	</update>
 </mapper>

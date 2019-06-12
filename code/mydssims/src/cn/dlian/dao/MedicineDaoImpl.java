@@ -22,7 +22,7 @@ public class MedicineDaoImpl implements IMedicineDao {
 		this.sqlSession = sqlSession;
 	}
 	/**
-	 * 发布一个药品信息
+	 * 添加一个药品信息
 	 */
 	@Override
 	public boolean addMedicine(Medicine med) {
@@ -65,10 +65,10 @@ public class MedicineDaoImpl implements IMedicineDao {
 	 * 模糊查询
 	 */
 	@Override
-	public List<Medicine> fuzzyQuery(String meg) {
+	public List<Medicine> fuzzyQuery(String msg) {
 		String statement = "cn.dlian.entities.MedicineMapper.fuzzyQuery";
-		meg = "%" + meg + "%";
-		List<Medicine> meds = sqlSession.selectList(statement,meg);
+		msg = "%" + msg + "%";
+		List<Medicine> meds = sqlSession.selectList(statement,msg);
 		return meds;
 	}
 

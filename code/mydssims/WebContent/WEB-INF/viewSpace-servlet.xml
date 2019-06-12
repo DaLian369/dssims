@@ -24,6 +24,12 @@
       p:supService-ref="supService"
 	/>
 	
+	<bean id="customerController" class="cn.dlian.controllers.CustomerController"
+      p:admService-ref="admService"
+      p:cusService-ref="cusService"
+      p:supService-ref="supService"
+	/>
+	
 	<mvc:resources location="WEB-INF/css/" mapping="/css/**"/>
 	<mvc:resources location="WEB-INF/js/" mapping="/js/**"/>
 	<mvc:resources location="WEB-INF/img/" mapping="/img/**"/>

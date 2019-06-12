@@ -10,9 +10,15 @@ import cn.dlian.dao.DaoFactory;
 import cn.dlian.dao.IInventoryDao;
 import cn.dlian.entities.Inventory;
 
-public class TestInventory {
+public class TestInventoryDao {
 	ApplicationContext context =new ClassPathXmlApplicationContext("applicationContext.xml");
 	IInventoryDao invDao = ((DaoFactory)context.getBean("daoFactory")).getInvDao();
+	
+	@Test
+	public void testAddInventory() {
+		boolean bo = invDao.addInventory(1,1,1,1000);
+		System.out.println(bo);
+	}
 	
 	@Test
 	public void testQueryInventory() {
@@ -27,23 +33,22 @@ public class TestInventory {
 	}
 	
 	@Test
-	public void testAddInventory() {
-		boolean bo = invDao.addInventory(1,1,1,1000);
+	public void testUpdateInventory() {
+		boolean bo = invDao.updateInventory(1, 1, 1, 1000);
 		System.out.println(bo);
 	}
 	
 	@Test
-	public void testUpdateInventory() {
-		boolean bo = invDao.updateInventory(1, 1, 1, -10);
-		System.out.println(bo);
+	public void testQueryWillSellOut() {
+		List<Inventory> invs = invDao.queryWillSellOut(1, 2000);
+		for (Inventory inventory : invs) {
+			System.out.println(inventory);
+		}
 	}
-	
-	
 	
 	@Test
 	public void testDeleteInventory() {
-		boolean bo = invDao.deleteInventory(1001, 1001, 1001);
+		boolean bo = invDao.deleteInventory(1, 1, 1);
 		System.out.println(bo);
 	}
-	
 }
