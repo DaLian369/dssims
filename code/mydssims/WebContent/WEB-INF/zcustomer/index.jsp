@@ -90,16 +90,22 @@
 						<span class="hidden-xs">首页</span>
 					</a>
 				</li>
+				<li>
+					<a href="javascript:void(0)" id="buyMedicinePage">
+						<i class="fa fa-calendar"></i>
+						<span class="hidden-xs">购药</span>
+					</a>
+				</li>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle">
 						<i class="fa fa-pencil-square-o"></i>
 						 <span class="hidden-xs">订单查询</span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a class="ajax-link" href="javascript:void(0)" id="waitOrder">待付款</a></li>
-						<li><a class="ajax-link" href="javascript:void(0)" id="paidOrder">已付款</a></li>
-						<li><a class="ajax-link" href="javascript:void(0)" id="accQuery">精确查询</a></li>
-						<li><a class="ajax-link" href="javascript:void(0)" id="allOrder">所有订单</a></li>
+						<li><a href="javascript:void(0)" id="queryWaitOrder">待付款</a></li>
+						<li><a href="javascript:void(0)" id="queryPaidOrder">已付款</a></li>
+						<li><a href="javascript:void(0)" id="queryAccurateOrder">精确查询</a></li>
+						<li><a href="javascript:void(0)" id="queryAllOrder">所有订单</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -122,7 +128,6 @@
 <script src="plugins/tinymce/jquery.tinymce.min.js"></script>
 <!-- All functions for this theme + document.ready processing -->
 <script src="js/devoops.js"></script>
-<script src="plugins/jquery/jquery-2.1.0.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		$("#ajax-content").load("zcustomer/headPage.form");
@@ -131,6 +136,24 @@
 		});
 		$("#headPage").click(function(){
 			$("#ajax-content").load("zcustomer/headPage.form");
+		});
+		$("#updatePass").click(function(){
+			$("#ajax-content").load("zcustomer/updatePass.form");
+		});
+		$("#queryAllOrder").click(function(){
+			$("#ajax-content").load("zcustomer/queryAllOrder.form");
+		});
+		$("#queryPaidOrder").click(function(){
+			$("#ajax-content").load("zcustomer/queryPaidOrder.form");
+		});
+		$("#queryWaitOrder").click(function(){
+			$("#ajax-content").load("zcustomer/queryWaitOrder.form");
+		});
+		$("#queryAccurateOrder").click(function(){
+			$("#ajax-content").load("zcustomer/queryAccurateOrder.form");
+		});
+		$("#buyMedicinePage").click(function(){
+			$("#ajax-content").load("zcustomer/buyMedicinePage.form");
 		});
 	});
 </script>

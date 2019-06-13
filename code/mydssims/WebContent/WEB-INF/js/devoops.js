@@ -2331,7 +2331,7 @@ $(document).ready(function () {
 			$(this).parents("ul.dropdown-menu").find('a').removeClass('active');
 			$(this).addClass('active')
 		}
-		if ($(this).hasClass('ajax-link')) {
+		/*if ($(this).hasClass('ajax-link')) {
 			e.preventDefault();
 			if ($(this).hasClass('add-full')) {
 				$('#content').addClass('full-content');
@@ -2345,7 +2345,7 @@ $(document).ready(function () {
 		}
 		if ($(this).attr('href') == '#') {
 			e.preventDefault();
-		}
+		}*/
 	});
 	var height = window.innerHeight - 49;
 	$('#main').css('min-height', height)

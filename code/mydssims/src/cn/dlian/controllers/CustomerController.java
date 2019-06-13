@@ -1,6 +1,9 @@
 package cn.dlian.controllers;
 
+import java.io.UnsupportedEncodingException;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -48,7 +51,6 @@ public class CustomerController {
 	@RequestMapping("index")
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/index.jsp");
-		System.out.println("b");
 		return mav;
 	}
 
@@ -69,8 +71,8 @@ public class CustomerController {
 	}
 	
 	@RequestMapping("updateInfo")
-	public ModelAndView updateInfo(@RequestParam String name,@RequestParam String phone,HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/headPage.jsp");
+	@ResponseBody
+	public String updateInfo(@RequestParam String name,@RequestParam String phone,HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		Customer customer = (Customer) session.getAttribute("cus");
 		Customer cus = new Customer();
@@ -87,13 +89,61 @@ public class CustomerController {
 		}else {
 			msg = "n";
 		}
-		mav.addObject("msg", msg);
-		return mav;
+		return msg;
+	}
+	
+	@RequestMapping("updatePassword")
+	@ResponseBody
+	public String updatePassword(@RequestParam String oldPass,@RequestParam String newPass,
+			HttpServletRequest req,HttpServletResponse resp) throws UnsupportedEncodingException {
+		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
+		Customer cus = (Customer)req.getSession().getAttribute("cus");
+		String pass = cus.getPassword();
+		String msg;
+		if(pass.equals(oldPass)) {
+			cusService.updatePassword(cus.getId(), newPass);
+			msg = "y";
+		}else {
+			msg = "n";
+		}
+		System.out.println(msg);
+		return msg;
 	}
 	
 	@RequestMapping("updatePass")
-	public ModelAndView updatePass(@RequestParam String oldPass,@RequestParam String newPass) {
-		
-		return new ModelAndView();
+	public ModelAndView updatePass() {
+		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/updatePass.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("queryAllOrder")
+	public ModelAndView queryAllOrder() {
+		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/queryAllOrder.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("queryPaidOrder")
+	public ModelAndView queryPaidOrder() {
+		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/queryPaidOrder.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("queryWaitOrder")
+	public ModelAndView queryWaitOrder() {
+		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/queryWaitOrder.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("queryAccurateOrder")
+	public ModelAndView queryAccurateOrder() {
+		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/queryAccurateOrder.jsp");
+		return mav;
+	}
+	
+	@RequestMapping("buyMedicinePage")
+	public ModelAndView buyMedicinePage() {
+		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/buyMedicinePage.jsp");
+		return mav;
 	}
 }

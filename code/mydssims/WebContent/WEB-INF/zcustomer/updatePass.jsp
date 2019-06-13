@@ -6,19 +6,19 @@
 	<div class="form-group">
 		<label for="datetime_example" class="col-sm-4 control-label">旧密码</label>
 		<div class="col-sm-8">
-			<input type="text" class="form-control" id="oldPass">
+			<input type="password" class="form-control" id="oldPass">
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="datetime_example" class="col-sm-4 control-label">新密码</label>
 		<div class="col-sm-8">
-			<input type="text" class="form-control" id="newPass1">
+			<input type="password" class="form-control" id="newPass1">
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="datetime_example" class="col-sm-4 control-label">确认密码</label>
 		<div class="col-sm-8">
-			<input type="text" class="form-control" id="newPass2">
+			<input type="password" class="form-control" id="newPass2">
 		</div>
 	</div>
 	<div class="form-group">
@@ -35,10 +35,21 @@ $("#sure").click(function(){
 	var oldPass = $("#oldPass").val();
 	var newPass = $("#newPass1").val();
 	var newPass2 = $("#newPass2").val();
-	if(newPass==newPass2){
-		$("#ajax-content").load("zcustomer/updateInfo.form",{oldPass:oldPass,newPass:newPass});
+	if(newPass==newPass2 && newPass!=null){
+		$.ajax({
+			type:"POST",
+			url:"zcustomer/updatePassword.form",
+			data:{oldPass:oldPass,newPass:newPass},
+			success:function(msg){
+				if(msg=="y"){
+					alert("修改成功!");
+				}else{
+					alert("修改失败，旧密码错误!");
+				}
+			}
+		});
 	}else{
-		alert("新密码不一致!");
+		alert("新密码不合规范!");
 	}
 });
 </script>

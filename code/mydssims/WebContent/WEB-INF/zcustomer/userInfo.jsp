@@ -33,7 +33,18 @@
 			if(nameValue==name && phoneValue==phone){
 				alert("请至少修改一项!");
 			}else{
-				$("#ajax-content").load("zcustomer/updateInfo.form",{name:name,phone:phone});
+				$.ajax({
+					type:"POST",
+					url:"zcustomer/updateInfo.form",
+					data:{name:name,phone:phone},
+					success:function(msg){
+						if(msg=="y"){
+							alert("更新成功!");
+						}else{
+							alert("更新失败，手机号已绑定!");
+						}
+					}
+				});
 			}
 		});
 	});
