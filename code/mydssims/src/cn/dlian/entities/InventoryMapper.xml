@@ -9,7 +9,7 @@
 	</insert>
 	
 	<update id="updateInventory" parameterType="hashmap">
-		update inventory set COUNT=COUNT+#{value} where A_ID=#{aid} and M_ID=#{mid} and S_ID=#{sid} and COUNT>(-value)
+		update inventory set COUNT=COUNT+#{value} where A_ID=#{aid} and M_ID=#{mid} and S_ID=#{sid} and COUNT>(-#{value})
 	</update>
 	
 	<delete id="deleteInventory" parameterType="hashmap">

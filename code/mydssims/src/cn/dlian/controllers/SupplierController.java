@@ -123,9 +123,6 @@ public class SupplierController {
 	public String queryWaitPurchases(HttpServletRequest req) {
 		Supplier sup = (Supplier)req.getSession().getAttribute("sup");
 		Purchase[] purs = supService.queryPurchasesBySidWait(sup.getId()).toArray(new Purchase[0]);
-		for (Purchase purchase : purs) {
-			System.out.println(purchase);
-		}
 		JSONObject jsonObj = new JSONObject();
 		jsonObj.put("purs", purs);
 		String jsonStr = jsonObj.toString();
@@ -137,9 +134,6 @@ public class SupplierController {
 	public String queryPaidPurchases(HttpServletRequest req) {
 		Supplier sup = (Supplier)req.getSession().getAttribute("sup");
 		Purchase[] purs = supService.queryPurchasesBySidPaid(sup.getId()).toArray(new Purchase[0]);
-		for (Purchase purchase : purs) {
-			System.out.println(purchase);
-		}
 		JSONObject jsonObj = new JSONObject();
 		jsonObj.put("purs", purs);
 		String jsonStr = jsonObj.toString();
@@ -169,9 +163,6 @@ public class SupplierController {
 	public String queryPurchasesByThreeId(@RequestParam(required=false) Integer mid,@RequestParam(required=false) Integer aid,HttpServletRequest req) {
 		Supplier sup = (Supplier)req.getSession().getAttribute("sup");
 		Purchase[] purs = supService.queryPurchasesByThreeId(sup.getId(), mid, aid).toArray(new Purchase[0]);
-		for (Purchase purchase : purs) {
-			System.out.println(purchase);
-		}
 		JSONObject jsonObj = new JSONObject();
 		jsonObj.put("purs",purs);
 		String jsonStr = jsonObj.toString();

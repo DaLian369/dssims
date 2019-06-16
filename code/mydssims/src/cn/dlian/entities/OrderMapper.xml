@@ -59,4 +59,13 @@
 	<select id="queryOrdersByAidCid" parameterType="hashmap" resultMap="orderResultMap">
 		select * from `order` where A_ID = #{aid} and C_ID = #{cid} order by O_TRANSACTION_DATE
 	</select>
+	
+	<select id="queryOrdersByOidAidCid" parameterType="hashmap" resultMap="orderResultMap">
+		select * from `order` <where>
+		 A_ID = #{aid}
+		 <if test="oid!=null">and O_ID = #{oid}</if>
+		 <if test="cid!=null">and C_ID = #{cid}</if>
+		 order by O_TRANSACTION_DATE
+		 </where> 
+	</select>
 </mapper>

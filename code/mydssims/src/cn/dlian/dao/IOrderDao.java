@@ -16,4 +16,6 @@ public interface IOrderDao {
 	boolean addOrder(Order order);
 	boolean updateOrder(int oid,int state);
 	boolean deleteOrder(int oid);
+	
+	List<Order> queryOrdersByOidAidCid(Integer oid,Integer aid,Integer cid);
 }

@@ -6,9 +6,9 @@
 			<div class="box-content no-padding">
 				<table class="table table-bordered table-striped table-hover table-heading table-datatable" id="datatable-1">
 					<thead align="center">
-						<tr><td>序号</td><td>订单id</td><td>药品名称</td><td>供应商</td><td>数量</td><td>总价</td><td>日期</td><td>状态</td></tr>
+						<tr><td>序号</td><td>订单id</td><td>药品名称</td><td>供应商<td>数量</td><td>总价</td><td>日期</td><td>状态</td></tr>
 					</thead>
-					<tbody id="orderInfo" align="center">
+					<tbody id="purInfo" align="center">
 					</tbody>
 				</table>
 			</div>

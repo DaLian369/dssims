@@ -234,7 +234,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 * 查询库存信息
 	 */
 	@Override
-	public List<Inventory> queryInventory(int aid, int mid, int sid) {
+	public List<Inventory> queryInventory(Integer aid, Integer mid, Integer sid) {
 		return invDao.queryInventory(aid, mid, sid);
 	}
 
@@ -274,5 +274,34 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	@Override
 	public boolean canclePurchase(int pid) {
 		return purDao.deletePurchase(pid);
+	}
+
+	/**
+	 * 添加库存
+	 * 查询药品信息是否已经存在
+	 * 	若存在将库存数量增加
+	 * 	若不存在，需要添加库存信息
+	 */
+	@Override
+	public boolean addInventory(int aid, int mid, int sid, int count) {
+		List<Inventory> invs = invDao.queryInventory(aid, mid, sid);
+		if(invs.size()!=0) {
+			return invDao.updateInventory(aid, mid, sid, count);
+		}else {
+			return invDao.addInventory(aid, mid, sid, count);
+		}
+	}
+
+	/**
+	 * 将要售罄库存
+	 */
+	@Override
+	public List<Inventory> queryWillSellOut(int aid, int limit) {
+		return invDao.queryWillSellOut(aid, limit);
+	}
+
+	@Override
+	public List<Order> queryOrdersByOidAidCid(Integer oid, Integer aid, Integer cid) {
+		return orderDao.queryOrdersByOidAidCid(oid, aid, cid);
 	}
 }

@@ -40,7 +40,7 @@
 					<div class="col-xs-4 col-sm-8 top-panel-right">
 						<ul class="nav navbar-nav pull-right panel-menu">
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
+								<a href="javascript:void(0)" class="dropdown-toggle account" data-toggle="dropdown">
 									<div class="avatar">
 									</div>
 									<i class="fa fa-angle-down pull-right"></i>
@@ -90,35 +90,6 @@
 						<span class="hidden-xs">首页</span>
 					</a>
 				</li>
-				
-				<li>
-					<a href="javascript:void(0)" id="buyMedicine  ">
-						<i class="fa fa-calendar"></i>
-						<span class="hidden-xs">采购药品</span>
-					</a>
-				</li>
-				
-				<li class="dropdown">
-					<a href="javascript:void(0)" class="dropdown-toggle">
-						<i class="fa fa-pencil-square-o"></i>
-						 <span class="hidden-xs">库存</span>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a href="javascript:void(0)" id="querySellOutInventory">将要售罄</a></li>
-						<li><a href="javascript:void(0)" id="queryAllInventory">所有库存</a></li>
-					</ul>
-				</li>
-				<li class="dropdown">
-					<a href="javascript:void(0)" class="dropdown-toggle">
-						<i class="fa fa-pencil-square-o"></i>
-						 <span class="hidden-xs">药品管理</span>
-					</a>
-					<ul class="dropdown-menu">
-						<li><a href="javascript:void(0)" id="addInventory">发布药品</a></li>
-						<li><a href="javascript:void(0)" id="updateInventory">更新药品</a></li>
-					</ul>
-				</li>
-				
 				<li>
 					<a href="javascript:void(0)" id="buyMedicinePage">
 						<i class="fa fa-calendar"></i>
@@ -133,7 +104,7 @@
 					<ul class="dropdown-menu">
 						<li><a href="javascript:void(0)" id="queryWaitOrder">待付款</a></li>
 						<li><a href="javascript:void(0)" id="queryPaidOrder">已付款</a></li>
-						<li><a href="javascript:void(0)" id="queryAccuratePaidOrder">精确查询</a></li>
+						<li><a href="javascript:void(0)" id="exactQueryOrderPage">精确查找</a></li>
 					</ul>
 				</li>
 				<li class="dropdown">
@@ -142,8 +113,18 @@
 						 <span class="hidden-xs">采购单查询</span>
 					</a>
 					<ul class="dropdown-menu">
-						<li><a href="javascript:void(0)" id="queryWaitPurchases">待付款</a></li>
-						<li><a href="javascript:void(0)" id="queryPaidPurchases">已付款</a></li>
+						<li><a href="javascript:void(0)" id="queryWaitPurchase">待付款</a></li>
+						<li><a href="javascript:void(0)" id="queryPaidPurchase">已付款</a></li>
+					</ul>
+				</li>
+				<li class="dropdown">
+					<a href="javascript:void(0)" class="dropdown-toggle">
+						<i class="fa fa-pencil-square-o"></i>
+						 <span class="hidden-xs">库存</span>
+					</a>
+					<ul class="dropdown-menu">
+						<li><a href="javascript:void(0)" id="queryInventoryPage">库存查询</a></li>
+						<li><a href="javascript:void(0)" id="willSellOut">将要售罄</a></li>
 					</ul>
 				</li>
 			</ul>

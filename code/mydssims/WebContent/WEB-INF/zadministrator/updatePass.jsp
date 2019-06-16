@@ -23,7 +23,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-8">
-			<button type="button" class="btn btn-primary" id="sure">
+			<button type="button" class="btn btn-primary" id="sureUpdatePass">
 			<span><i class="fa fa-clock-o"></i></span>确定
 			</button>
 		</div>
@@ -31,14 +31,14 @@
 </form>
 </div>
 <script type="text/javascript">
-$("#sure").click(function(){
+$("#sureUpdatePass").click(function(){
 	var oldPass = $("#oldPass").val();
 	var newPass = $("#newPass1").val();
 	var newPass2 = $("#newPass2").val();
 	if(newPass==newPass2 && newPass!=null){
 		$.ajax({
 			type:"POST",
-			url:"zcustomer/updatePassword.form",
+			url:"zadministrator/updatePassword.form",
 			data:{oldPass:oldPass,newPass:newPass},
 			success:function(msg){
 				if(msg=="y"){

@@ -138,6 +138,20 @@ public class OrderDaoImpl implements IOrderDao {
 		return orders;
 	}
 
+	/**
+	 * 管理员用来查询特定的订单
+	 */
+	@Override
+	public List<Order> queryOrdersByOidAidCid(Integer oid, Integer aid, Integer cid) {
+		String statement = "cn.dlian.entities.OrderMapper.queryOrdersByOidAidCid";
+		Map<String,Integer> map = new HashMap<>();
+		map.put("aid", aid);
+		map.put("cid",cid);
+		map.put("oid",oid);
+		List<Order> orders = sqlSession.selectList(statement,map);
+		return orders;
+	}
+
 
 
 }
