@@ -73,8 +73,13 @@ public class CustomerDaoImpl implements ICustomerDao {
 	@Override
 	public boolean updateInfo(Customer cus) {
 		String statement = "cn.dlian.entities.CustomerMapper.updateInfo";
-		int x = sqlSession.update(statement, cus);
-		return x>0;
+		try {
+			int x = sqlSession.update(statement, cus);
+			return x>0;
+		}catch(Exception e) {
+			return false;
+		}
+		
 	}
 
 }

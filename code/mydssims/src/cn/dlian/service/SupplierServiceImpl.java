@@ -98,6 +98,14 @@ public class SupplierServiceImpl implements ISupplierService {
 		return purDao.queryPurchasesBySidWait(sid);
 	}
 
+	/**
+	 * 通过aid和mid查询采购单
+	 */
+	@Override
+	public List<Purchase> queryPurchasesByThreeId(Integer sid, Integer mid,Integer aid) {
+		return purDao.queryPurchasesByThreeId(sid,mid,aid);
+	}
+
 	
 
 }

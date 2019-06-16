@@ -55,7 +55,12 @@
 		select * from purchase where S_ID=#{sid} and P_STATE=2
 	</select>
 	
-	<select id="queryPurchasesBySidAid" parameterType="hashmap" resultMap="purchaseResultMap">
-		select * from purchase where S_ID=#{sid} and A_ID=#{aid}
+	<select id="queryPurchasesByThreeId" parameterType="hashmap" resultMap="purchaseResultMap">
+		select * from purchase
+		 <where>
+			<if test="sid!=null">S_ID=#{sid}</if>
+			<if test="mid!=null">and M_ID=#{mid}</if>
+			<if test="aid!=null">and A_ID=#{aid}</if>
+		</where>  
 	</select>
 </mapper>

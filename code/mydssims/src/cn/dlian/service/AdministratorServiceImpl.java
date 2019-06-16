@@ -218,8 +218,8 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	 * 查询管理员和某一供应商相关的采购单
 	 */
 	@Override
-	public List<Purchase> queryPurchasesBySidAid(int sid, int aid) {
-		return purDao.queryPurchasesBySidAid(sid, aid);
+	public List<Purchase> queryPurchasesByThreeId(Integer sid, Integer mid,Integer aid) {
+		return purDao.queryPurchasesByThreeId(sid,mid,aid);
 	}
 
 	/**

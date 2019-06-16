@@ -29,9 +29,10 @@ public class TestAdministratorDao {
 
 	@Test
 	public void testAddCustomer() {
-		Administrator adm = new Administrator("赵","123456","1870629692");
-		boolean bo = admDao.addAdministrator(adm);
-		System.out.println(bo);
+		for(int i=1;i<=30;i++) {
+			Administrator adm = new Administrator("管理员"+i,"123456","10000"+i);
+			boolean bo = admDao.addAdministrator(adm);
+		}
 	}
 	
 	@Test

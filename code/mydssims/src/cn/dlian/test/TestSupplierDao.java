@@ -24,15 +24,16 @@ public class TestSupplierDao {
 	
 	@Test
 	public void testLogin() {
-		Supplier sup = (Supplier)supDao.login("18702729676", "123456");
+		Supplier sup = (Supplier)supDao.login("100001", "123456");
 		System.out.println(sup);
 	}
 	
 	@Test
 	public void testAddSuppier() {
-		Supplier sup = new Supplier("赵柱","123456","18706729671","西安");
-		boolean bo = supDao.addSupplier(sup);
-		System.out.println(bo);
+		for(int i=1;i<=30;i++) {
+			Supplier sup = new Supplier("供应商"+i,"123456","10000"+i,"西安");
+			supDao.addSupplier(sup);
+		}
 	}
 	
 	@Test

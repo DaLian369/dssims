@@ -75,8 +75,12 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 	@Override
 	public boolean updateInfo(Administrator adm) {
 		String statement = "cn.dlian.entities.AdministratorMapper.updateInfo";
-		int x = sqlSession.update(statement,adm);
-		return x>0;
+		try {
+			int x = sqlSession.update(statement,adm);
+			return x>0;
+		}catch(Exception e) {
+			return false;
+		}
 	}
 
 }

@@ -40,13 +40,13 @@
 					<div class="col-xs-4 col-sm-8 top-panel-right">
 						<ul class="nav navbar-nav pull-right panel-menu">
 							<li class="dropdown">
-								<a href="#" class="dropdown-toggle account" data-toggle="dropdown">
+								<a href="javascript:void(0)" class="dropdown-toggle account" data-toggle="dropdown">
 									<div class="avatar">
 									</div>
 									<i class="fa fa-angle-down pull-right"></i>
 									<div class="user-mini pull-right">
 										<span class="welcome">欢迎您,</span>
-										<span>${cus.name }</span>
+										<span id="username"></span>
 									</div>
 								</a>
 								<ul class="dropdown-menu">
@@ -97,15 +97,13 @@
 					</a>
 				</li>
 				<li class="dropdown">
-					<a href="#" class="dropdown-toggle">
+					<a href="javascript:void(0)" class="dropdown-toggle">
 						<i class="fa fa-pencil-square-o"></i>
 						 <span class="hidden-xs">订单查询</span>
 					</a>
 					<ul class="dropdown-menu">
 						<li><a href="javascript:void(0)" id="queryWaitOrder">待付款</a></li>
 						<li><a href="javascript:void(0)" id="queryPaidOrder">已付款</a></li>
-						<li><a href="javascript:void(0)" id="queryAccurateOrder">精确查询</a></li>
-						<li><a href="javascript:void(0)" id="queryAllOrder">所有订单</a></li>
 					</ul>
 				</li>
 			</ul>
@@ -128,35 +126,7 @@
 <script src="plugins/tinymce/jquery.tinymce.min.js"></script>
 <!-- All functions for this theme + document.ready processing -->
 <script src="js/devoops.js"></script>
-<script type="text/javascript">
-	$(function(){
-		$("#ajax-content").load("zcustomer/headPage.form");
-		$("#userInfo").click(function(){
-			$("#ajax-content").load("zcustomer/userInfo.form");
-		});
-		$("#headPage").click(function(){
-			$("#ajax-content").load("zcustomer/headPage.form");
-		});
-		$("#updatePass").click(function(){
-			$("#ajax-content").load("zcustomer/updatePass.form");
-		});
-		$("#queryAllOrder").click(function(){
-			$("#ajax-content").load("zcustomer/queryAllOrder.form");
-		});
-		$("#queryPaidOrder").click(function(){
-			$("#ajax-content").load("zcustomer/queryPaidOrder.form");
-		});
-		$("#queryWaitOrder").click(function(){
-			$("#ajax-content").load("zcustomer/queryWaitOrder.form");
-		});
-		$("#queryAccurateOrder").click(function(){
-			$("#ajax-content").load("zcustomer/queryAccurateOrder.form");
-		});
-		$("#buyMedicinePage").click(function(){
-			$("#ajax-content").load("zcustomer/buyMedicinePage.form");
-		});
-	});
-</script>
+<script src="js/customer.js"></script>
 </body>
 </html>
 

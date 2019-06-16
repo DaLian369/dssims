@@ -1,6 +1,7 @@
 package cn.dlian.test;
 
 import java.util.List;
+import java.util.Random;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -16,26 +17,28 @@ public class TestInventoryDao {
 	
 	@Test
 	public void testAddInventory() {
-		boolean bo = invDao.addInventory(1,1,1,1000);
-		System.out.println(bo);
+		Random random = new Random();
+		for(int i=1;i<1500;i++) {
+			invDao.addInventory(random.nextInt(30)+1,random.nextInt(30)+1,random.nextInt(30)+1,random.nextInt(5000)+1);
+		}
 	}
 	
 	@Test
 	public void testQueryInventory() {
-		List<Inventory> inventoies = invDao.queryInventory(1, 1, 1);
+		List<Inventory> inventoies = invDao.queryInventory(3, 1, 5);
 		if(inventoies != null) {
 			for (Inventory inventory : inventoies) {
-				System.out.println(inventory.getMedicine());
-				System.out.println(inventory.getSupplier());
-				System.out.println(inventory.getCount());
+				System.out.println(inventory);
 			}
 		}
 	}
 	
 	@Test
 	public void testUpdateInventory() {
-		boolean bo = invDao.updateInventory(1, 1, 1, 1000);
-		System.out.println(bo);
+		Random random = new Random();
+		for(int i=1;i<1500;i++) {
+			invDao.updateInventory(random.nextInt(30)+1,random.nextInt(30)+1,random.nextInt(30)+1,random.nextInt(5000)+1);
+		}
 	}
 	
 	@Test
@@ -50,5 +53,13 @@ public class TestInventoryDao {
 	public void testDeleteInventory() {
 		boolean bo = invDao.deleteInventory(1, 1, 1);
 		System.out.println(bo);
+	}
+	
+	@Test
+	public void testFuzzyQuery() {
+		List<Inventory> invs = invDao.fuzzyQuery("1");
+		for (Inventory inventory : invs) {
+			System.out.println(inventory);
+		}
 	}
 }

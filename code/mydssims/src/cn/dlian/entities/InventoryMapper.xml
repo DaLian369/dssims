@@ -9,7 +9,7 @@
 	</insert>
 	
 	<update id="updateInventory" parameterType="hashmap">
-		update inventory set COUNT=COUNT+#{value} where A_ID=#{aid} and M_ID=#{mid} and S_ID=#{sid}
+		update inventory set COUNT=COUNT+#{value} where A_ID=#{aid} and M_ID=#{mid} and S_ID=#{sid} and COUNT>(-value)
 	</update>
 	
 	<delete id="deleteInventory" parameterType="hashmap">
@@ -18,7 +18,7 @@
 	
 	<resultMap id="invResultMap" type="cn.dlian.entities.Inventory">
 		<result property="count" column="COUNT" />
-		<association property="medicine" javaType="cn.dlian.entities.Medicine">
+		<association property="med" javaType="cn.dlian.entities.Medicine">
 			<id property="id" column="M_ID" />
 			<result property="name" column="M_NAME"/>
 			<result property="type" column="M_TYPE"/>
@@ -26,24 +26,41 @@
 			<result property="productionDate" column="M_PRODUCTION_DATE"/>
 			<result property="qualityGuaranteePeriod" column="M_QUALITY_GUARANTEE_PERIOD"/>
 		</association>
-		<association property="supplier" javaType="cn.dlian.entities.Supplier">
+		<association property="sup" javaType="cn.dlian.entities.Supplier">
 			<id property="id" column="S_ID" />
 			<result property="name" column="S_NAME"/>
 			<result property="password" column="S_PASSWORD"/>
 			<result property="phone" column="S_PHONE"/>
 			<result property="city" column="S_CITY"/>
 		</association>
+		<association property="adm" javaType="cn.dlian.entities.Administrator">
+			<id property="id" column="A_ID" />
+			<result property="name" column="A_NAME"/>
+			<result property="password" column="A_PASSWORD"/>
+			<result property="phone" column="A_PHONE"/>
+			<result property="limit" column="A_LIMIT"/>
+		</association>
 	</resultMap>
 	
 	<select id="queryInventory" parameterType="hashmap" resultMap="invResultMap">
 		select * from inventory i,administrator a,medicine m, supplier s 
-			where i.A_ID=a.A_ID and i.M_ID=m.M_ID and i.S_ID=s.S_ID
-			and i.A_ID=#{aid} and i.M_ID=#{mid} and i.S_ID=#{sid};
+			<where>
+			i.A_ID=a.A_ID and i.M_ID=m.M_ID and i.S_ID=s.S_ID
+			<if test="aid!=null">and i.A_ID=#{aid}</if>
+			<if test="mid!=null">and i.M_ID=#{mid}</if>
+			<if test="sid!=null">and i.S_ID=#{sid}</if>
+			</where>
 	</select> 
 	
 	<select id="queryWillSellOut" parameterType="hashmap" resultMap="invResultMap">
 		select * from inventory i,administrator a,medicine m, supplier s 
 			where i.A_ID=a.A_ID and i.M_ID=m.M_ID and i.S_ID=s.S_ID
-			and i.A_ID=#{aid} and i.A_COUNT less than #{limit}
+			and i.A_ID=#{aid} and i.COUNT  &lt;= #{limit}
+	</select>
+	
+	<select id="fuzzyQuery" parameterType="string" resultMap="invResultMap">
+		select * from inventory i,administrator a,medicine m, supplier s 
+			where i.A_ID=a.A_ID and i.M_ID=m.M_ID and i.S_ID=s.S_ID
+			and (m.M_NAME like #{msg} or m.M_TYPE like #{msg})
 	</select>
 </mapper>

@@ -3,6 +3,7 @@ package cn.dlian.test;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Random;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -10,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.dlian.dao.DaoFactory;
 import cn.dlian.dao.IPurchaseDao;
+import cn.dlian.entities.Order;
 import cn.dlian.entities.Purchase;
 
 public class TestPurchaseDao {
@@ -18,9 +20,11 @@ public class TestPurchaseDao {
 	
 	@Test
 	public void addPurchase() {
-		Purchase purchase = new Purchase( 1, 1, 1, 10, 100, new Date(new java.util.Date().getTime()), 1);
-		boolean bo= purDao.addPurchase(purchase);
-		System.out.println(bo);
+		Random random = new Random();
+		for(int i=1;i<=1000;i++) {
+			Purchase purchase = new Purchase(random.nextInt(30)+1, random.nextInt(30)+1, random.nextInt(30)+1, 10, 100, new Date(new java.util.Date().getTime()), 2);
+			purDao.addPurchase(purchase);
+		}
 	}
 	
 	@Test
@@ -90,8 +94,8 @@ public class TestPurchaseDao {
 	}
 	
 	@Test
-	public void queryPurchasesBySidAid() {
-		List<Purchase> purchases = purDao.queryPurchasesBySidAid(1, 1);
+	public void queryPurchasesByThreeId() {
+		List<Purchase> purchases = purDao.queryPurchasesByThreeId(1, null,1);
 		for (Purchase purchase : purchases) {
 			System.out.println(purchase);
 		}

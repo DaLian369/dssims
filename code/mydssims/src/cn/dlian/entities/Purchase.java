@@ -22,7 +22,6 @@ public class Purchase{
 	}
 	public Purchase(int aid, int mid, int sid, int qty, float dollars, Date transactionDate, int state) {
 		super();
-		this.id = id;
 		this.aid = aid;
 		this.mid = mid;
 		this.sid = sid;
@@ -67,8 +66,8 @@ public class Purchase{
 	public void setDollars(float dollars) {
 		this.dollars = dollars;
 	}
-	public Date getTransactionDate() {
-		return transactionDate;
+	public String getTransactionDate() {
+		return transactionDate.toString();
 	}
 	public void setTransactionDate(Date transactionDate) {
 		this.transactionDate = transactionDate;

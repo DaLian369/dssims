@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<form action="regist.form" method="post" class="box-content">
+<div class="box-content">
 	<div class="form-group">
 		<label id="name" class="control-label">姓名</label>
 		<input type="text" class="form-control" name="name" />
@@ -11,7 +11,7 @@
 	</div>
 	<div class="form-group">
 		<label id="phone" class="control-label">电话</label>
-		<input type="password" class="form-control" name="phone" />
+		<input type="text" class="form-control" name="phone" />
 	</div>
 	<div class="form-group" id="supCity">
 		
@@ -22,9 +22,9 @@
         <input type="radio" id="sup" name="identity" value="sup"> 供应商&emsp;
    	</div>
 	<div class="text-center">
-		<input type="submit" value="注册" />
+		<input type="button" id="regist" value="注册" />
 	</div>
-</form>
+</div>
 <script type="text/javascript">
 	
 	$(function(){
@@ -48,6 +48,22 @@
 			var supCity = $("#supCity");
 			var text = '<label id="city" class="control-label">城市</label><input type="text" class="form-control" name="city" />'
 			supCity.html(text);
+		});
+		
+		$("#regist").click(function(){
+			var name = $("#name").val();
+			var password = $("#password").val();
+			var phone = $("#phone").val();
+			var city = $("#city").val();
+			var identity = $("input[name='identity']").val();
+			$.post("regist.form",{name:name,password:password,phone:phone,city:city,identity:identity},function(msg){
+				if(msg=="y"){
+					alert("注册成功!");
+				}else{
+					alert("注册失败!手机号已绑定！");
+				}
+			})
+			
 		});
 	});
 

@@ -25,7 +25,7 @@ private SqlSession sqlSession;
 	 * 查询库存
 	 */
 	@Override
-	public List<Inventory> queryInventory(int aid, int mid, int sid) {
+	public List<Inventory> queryInventory(Integer aid, Integer mid, Integer sid) {
 		String sql = "cn.dlian.entities.InventoryMapper.queryInventory";
 		Map<String,Integer> map = new HashMap<>();
 		map.put("aid", aid);
@@ -84,11 +84,22 @@ private SqlSession sqlSession;
 	 */
 	@Override
 	public List<Inventory> queryWillSellOut(int aid, int limit) {
-		String statement = "cn.dlian.entities.Inventory.queryWillSellOut";
+		String sql = "cn.dlian.entities.InventoryMapper.queryWillSellOut";
 		Map<String,Integer> map = new HashMap<>();
 		map.put("aid", aid);
 		map.put("limit", limit);
-		List<Inventory> invs = sqlSession.selectList(statement,map);
+		List<Inventory> invs = sqlSession.selectList(sql,map);
+		return invs;
+	}
+
+	/**
+	 * 模糊查询
+	 */
+	@Override
+	public List<Inventory> fuzzyQuery(String msg) {
+		String sql = "cn.dlian.entities.InventoryMapper.fuzzyQuery";
+		msg = "%" + msg + "%";
+		List<Inventory> invs = sqlSession.selectList(sql,msg);
 		return invs;
 	}
 

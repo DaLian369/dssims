@@ -51,9 +51,6 @@ public class Medicine{
 	public void setPrice(float price) {
 		this.price = price;
 	}
-	public Date getProductionDate() {
-		return productionDate;
-	}
 	public void setProductionDate(Date productionDate) {
 		this.productionDate = productionDate;
 	}

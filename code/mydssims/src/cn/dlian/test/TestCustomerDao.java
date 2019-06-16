@@ -27,9 +27,10 @@ public class TestCustomerDao {
 	
 	@Test
 	public void testRegist() {
-		Customer cus = new Customer("铁柱","123456","18706729691");
-		boolean bo = cusDao.addCustomer(cus);
-		System.out.println(bo);
+		for(int i=1;i<=30;i++) {
+			Customer cus = new Customer("客户"+i,"123456","10000"+i);
+			cusDao.addCustomer(cus);
+		}
 	}
 	
 	@Test

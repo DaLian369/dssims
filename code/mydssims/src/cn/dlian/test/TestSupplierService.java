@@ -23,7 +23,7 @@ public class TestSupplierService {
 	
 	@Test
 	public void testLogin() {
-		Supplier sup = (Supplier)supService.login("18702729676", "123456");
+		Supplier sup = (Supplier)supService.login("100001", "123456");
 		System.out.println(sup);
 	}
 	

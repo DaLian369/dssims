@@ -5,18 +5,18 @@
 	<div class="form-group">
 		<label for="datetime_example" class="col-sm-4 control-label">姓名</label>
 		<div class="col-sm-8">
-			<input type="text" class="form-control" id="name"  value=${cus.name }>
+			<input type="text" class="form-control" id="name"  value=${adm.name }>
 		</div>
 	</div>
 	<div class="form-group">
 		<label for="datetime_example" class="col-sm-4 control-label">电话</label>
 		<div class="col-sm-8">
-			<input type="text" class="form-control" id="phone"  value=${cus.phone }>
+			<input type="text" class="form-control" id="phone"  value=${adm.phone }>
 		</div>
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-8">
-			<button type="button" class="btn btn-primary" id="sureUpdateInfo">
+			<button type="button" class="btn btn-primary" id="sure">
 			<span><i class="fa fa-clock-o"></i></span>确定
 			</button>
 		</div>
@@ -27,7 +27,7 @@
 	$(function(){
 		var nameValue = $("#name").val();
 		var phoneValue = $("#phone").val();
-		$("#sureUpdateInfo").click(function(){
+		$("#sure").click(function(){
 			var name = $("#name").val();
 			var phone = $("#phone").val();
 			if(nameValue==name && phoneValue==phone){
@@ -35,13 +35,13 @@
 			}else{
 				$.ajax({
 					type:"POST",
-					url:"zcustomer/updateInfo.form",
+					url:"zadministrator/updateInfo.form",
 					data:{name:name,phone:phone},
-					success:function(jsonObj){
-						if(jsonObj=="y"){
-							alert("修改成功!");
+					success:function(msg){
+						if(msg=="y"){
+							alert("更新成功!");
 						}else{
-							alert("修改失败!");
+							alert("更新失败，手机号已绑定!");
 						}
 					}
 				});

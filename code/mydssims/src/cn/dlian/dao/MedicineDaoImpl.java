@@ -47,8 +47,13 @@ public class MedicineDaoImpl implements IMedicineDao {
 	@Override
 	public boolean updateMedicine(Medicine med) {
 		String statement = "cn.dlian.entities.MedicineMapper.updateMedicine";
-		int x = sqlSession.update(statement,med);
-		return x>0;
+		try {
+			int x = sqlSession.update(statement,med);
+			return x>0;
+		}catch(Exception e) {
+			return false;
+		}
+		
 	}
 
 	/**

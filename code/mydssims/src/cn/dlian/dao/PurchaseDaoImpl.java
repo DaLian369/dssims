@@ -124,14 +124,15 @@ public class PurchaseDaoImpl implements IPurchaseDao {
 	}
 
 	/**
-	 * 通过sid、aid查询采购单
+	 * 通过sid、aid、mid查询采购单
 	 */
 	@Override
-	public List<Purchase> queryPurchasesBySidAid(int sid, int aid) {
-		String sql = "cn.dlian.entities.PurchaseMapper.queryPurchasesBySid";
+	public List<Purchase> queryPurchasesByThreeId(Integer sid, Integer mid,Integer aid) {
+		String sql = "cn.dlian.entities.PurchaseMapper.queryPurchasesByThreeId";
 		Map<String,Integer> map = new HashMap<>();
 		map.put("sid", sid);
 		map.put("aid", aid);
+		map.put("mid", mid);
 		List<Purchase> purchases = sqlSession.selectList(sql,map);
 		return purchases;
 	}

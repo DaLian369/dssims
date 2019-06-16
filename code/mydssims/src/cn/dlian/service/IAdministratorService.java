@@ -25,7 +25,7 @@ public interface IAdministratorService extends IUserService {
 	List<Purchase> queryPurchasesByAid(int aid);
 	List<Purchase> queryPurchasesByAidPaid(int aid);
 	List<Purchase> queryPurchasesByAidWait(int aid);
-	List<Purchase> queryPurchasesBySidAid(int sid,int aid);
+	List<Purchase> queryPurchasesByThreeId(Integer sid,Integer mid,Integer aid);
 	Purchase queryPurchaseByPid(int pid);
 	List<Inventory> queryInventory(int aid,int mid,int sid);
 	boolean placeOnPurchase(Purchase pur);

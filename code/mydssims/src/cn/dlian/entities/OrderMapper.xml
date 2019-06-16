@@ -33,30 +33,30 @@
 	</select>
 	
 	<select id="queryOrdersByCid" parameterType="int" resultMap="orderResultMap">
-		select * from `order` where C_ID = #{cid}
+		select * from `order` where C_ID = #{cid} order by O_TRANSACTION_DATE
 	</select>
 	
 	<select id="queryOrdersByCidPaid" parameterType="int" resultMap="orderResultMap">
-		select * from `order` where C_ID = #{cid} and O_STATE = 1
+		select * from `order` where C_ID = #{cid} and O_STATE = 1 order by O_TRANSACTION_DATE
 	</select>
 	
 	<select id="queryOrdersByCidWait" parameterType="int" resultMap="orderResultMap">
-		select * from `order` where C_ID = #{cid} and O_STATE = 2
+		select * from `order` where C_ID = #{cid} and O_STATE = 2 order by O_TRANSACTION_DATE
 	</select>
 	
 	<select id="queryOrdersByAid" parameterType="int" resultMap="orderResultMap">
-		select * from `order` where A_ID = #{aid}
+		select * from `order` where A_ID = #{aid} order by O_TRANSACTION_DATE
 	</select>
 	
 	<select id="queryOrdersByAidPaid" parameterType="int" resultMap="orderResultMap">
-		select * from `order` where A_ID = #{aid} and O_STATE = 1
+		select * from `order` where A_ID = #{aid} and O_STATE = 1 order by O_TRANSACTION_DATE
 	</select>
 	
 	<select id="queryOrdersByAidWait" parameterType="int" resultMap="orderResultMap">
-		select * from `order` where A_ID = #{aid} and O_STATE = 2
+		select * from `order` where A_ID = #{aid} and O_STATE = 2 order by O_TRANSACTION_DATE
 	</select>
 	
 	<select id="queryOrdersByAidCid" parameterType="hashmap" resultMap="orderResultMap">
-		select * from `order` where A_ID = #{aid} and C_ID = #{cid}
+		select * from `order` where A_ID = #{aid} and C_ID = #{cid} order by O_TRANSACTION_DATE
 	</select>
 </mapper>

@@ -77,8 +77,13 @@ public class SupplierDaoImpl implements ISupplierDao {
 	@Override
 	public boolean updateInfo(Supplier sup) {
 		String statement = "cn.dlian.entities.SupplierMapper.updateInfo";
-		int x = sqlSession.update(statement,sup);
-		return x>0;
+		try {
+			int x = sqlSession.update(statement,sup);
+			return x>0;
+		}catch(Exception e) {
+			return false;
+		}
+		
 	}
 
 }

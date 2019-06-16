@@ -22,14 +22,18 @@
         <input type="submit" class="btn btn-primary" value="登录" />
     </div>
  </form> 
- <!-- 
+ <!--
 <script type="text/javascript">
 	$(function(){
 		$("#login").click(function(){
 			var id = $("input[name='id']").val();
 			var password = $("input[name='password']").val();
 			var identity = $("input[name='identity']").val();
-			$("#bo").load("login.form",{id:id,password:password,identity:identity});
+			$("#bo").load("login.form",{id:id,password:password,identity:identity},function(msg){
+				if(msg=="n"){
+					alert("用户名或密码错误!");
+				}
+			});
 		});
 	});
-</script> -->
+</script>-->

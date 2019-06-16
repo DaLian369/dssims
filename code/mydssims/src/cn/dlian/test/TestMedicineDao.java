@@ -20,9 +20,10 @@ public class TestMedicineDao {
 	public void testAddMedicine() {
 		
 		Date date = new Date(new java.util.Date().getTime());
-		Medicine med = new Medicine("钙片","补钙",10,date,"6个月");
-		boolean bo = medDao.addMedicine(med);
-		System.out.println(bo);
+		for(int i=1;i<=30;i++) {
+			Medicine med = new Medicine("药品"+i,"治病",10,date,"6个月");
+			medDao.addMedicine(med);
+		}
 	}
 	
 	@Test
@@ -47,7 +48,7 @@ public class TestMedicineDao {
 	
 	@Test
 	public void testFuzzyQuery() {
-		List<Medicine> meds = medDao.fuzzyQuery("蓝");
+		List<Medicine> meds = medDao.fuzzyQuery("1");
 		for (Medicine medicine : meds) {
 			System.out.println(medicine);
 		}

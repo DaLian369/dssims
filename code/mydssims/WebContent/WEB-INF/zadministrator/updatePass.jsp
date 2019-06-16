@@ -23,7 +23,7 @@
 	</div>
 	<div class="form-group">
 		<div class="col-sm-offset-4 col-sm-8">
-			<button type="button" class="btn btn-primary" id="sureUpdatePass">
+			<button type="button" class="btn btn-primary" id="sure">
 			<span><i class="fa fa-clock-o"></i></span>确定
 			</button>
 		</div>
@@ -31,7 +31,7 @@
 </form>
 </div>
 <script type="text/javascript">
-$("#sureUpdatePass").click(function(){
+$("#sure").click(function(){
 	var oldPass = $("#oldPass").val();
 	var newPass = $("#newPass1").val();
 	var newPass2 = $("#newPass2").val();

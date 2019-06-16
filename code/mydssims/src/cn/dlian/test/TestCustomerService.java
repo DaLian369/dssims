@@ -10,7 +10,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.dlian.entities.Customer;
-import cn.dlian.entities.Medicine;
+import cn.dlian.entities.Inventory;
 import cn.dlian.entities.Order;
 import cn.dlian.service.ICustomerService;
 import cn.dlian.service.ServiceFactory;
@@ -69,14 +69,16 @@ public class TestCustomerService {
 	
 	@Test
 	public void testQueryMedicine() {
-		Medicine med = cusService.queryMedicine(1);
-		System.out.println(med);
+		List<Inventory> invs = cusService.queryMedicine(1, null, 1);
+		for (Inventory inventory : invs) {
+			System.out.println(inventory);
+		}
 	}
 	
 	@Test
 	public void testFuzzyQuery() {
-		List<Medicine> meds = cusService.fuzzyQuery("蓝");
-		System.out.println(meds.get(0));
+		List<Inventory> invs = cusService.fuzzyQuery("1");
+		System.out.println(invs.get(0));
 	}
 	
 	@Test

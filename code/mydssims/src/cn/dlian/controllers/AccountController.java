@@ -1,6 +1,5 @@
 package cn.dlian.controllers;
 
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -8,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import cn.dlian.entities.Administrator;
@@ -58,8 +58,8 @@ public class AccountController {
 			Customer cus = (Customer)cusService.login(id, password);
 			if(cus!=null) {
 				mav = new ModelAndView("zcustomer/index.form");
-				Cookie cookie1 = new Cookie("id",cus.getId()+"");
-				response.addCookie(cookie1);
+				//Cookie cookie1 = new Cookie("id",cus.getId()+"");
+				//response.addCookie(cookie1);
 				HttpSession session = request.getSession();
 				session.setAttribute("cus", cus);
 				mav.addObject(cus);
@@ -68,12 +68,16 @@ public class AccountController {
 			Administrator adm = (Administrator)admService.login(id, password);
 			if(adm!=null) {
 				mav = new ModelAndView("zadministrator/index.form");
+				HttpSession session = request.getSession();
+				session.setAttribute("adm", adm);
 				mav.addObject(adm);
 			}
 		}else {
 			Supplier sup = (Supplier)supService.login(id, password);
 			if(sup!=null) {
 				mav = new ModelAndView("zsupplier/index.form");
+				HttpSession session = request.getSession();
+				session.setAttribute("sup", sup);
 				mav.addObject(sup);
 			}
 		}
@@ -81,10 +85,10 @@ public class AccountController {
 	}
 	
 	@RequestMapping("regist")
-	public ModelAndView regist(@RequestParam String name,@RequestParam String password,
+	@ResponseBody
+	public String regist(@RequestParam String name,@RequestParam String password,
 			@RequestParam String phone,@RequestParam(required=false)String city,@RequestParam String identity,HttpServletRequest request) {
 		boolean bo=false;
-		ModelAndView mav = new ModelAndView("index.jsp");
 		if(identity.equals("cus")) {
 			Customer cus = new Customer(name,password,phone);
 			bo = cusService.regist(cus);
@@ -96,11 +100,10 @@ public class AccountController {
 			bo = supService.regist(sup);
 		}
 		if(bo) {
-			mav.addObject("msg", "注册成功!");
+			return "y";
 		}else {
-			mav.addObject("msg", "电话号码已注册!");
+			return "n";
 		}
-		return mav;
 	}
 	
 	@RequestMapping("staticRegist")

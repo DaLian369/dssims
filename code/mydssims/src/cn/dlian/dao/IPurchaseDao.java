@@ -12,7 +12,7 @@ public interface IPurchaseDao {
 	List<Purchase> queryPurchasesBySid(int sid);
 	List<Purchase> queryPurchasesBySidPaid(int sid);
 	List<Purchase> queryPurchasesBySidWait(int sid);
-	List<Purchase> queryPurchasesBySidAid(int sid,int aid);
+	List<Purchase> queryPurchasesByThreeId(Integer sid,Integer mid,Integer aid);
 	boolean addPurchase(Purchase purchase);
 	boolean updatePurchase(int pid,int state);
 	boolean deletePurchase(int pid);

@@ -9,6 +9,7 @@ import cn.dlian.dao.IInventoryDao;
 import cn.dlian.dao.IMedicineDao;
 import cn.dlian.dao.IOrderDao;
 import cn.dlian.entities.Customer;
+import cn.dlian.entities.Inventory;
 import cn.dlian.entities.Medicine;
 import cn.dlian.entities.Order;
 import cn.dlian.entities.User;
@@ -132,8 +133,8 @@ public class CustomerServiceImpl implements ICustomerService {
 	 * 精确查询药品
 	 */
 	@Override
-	public Medicine queryMedicine(int mid) {
-		return medDao.queryMedicine(mid);
+	public List<Inventory> queryMedicine(Integer aid,Integer mid,Integer sid) {
+		return invDao.queryInventory(aid, mid, sid);
 	}
 
 	/**
@@ -141,8 +142,8 @@ public class CustomerServiceImpl implements ICustomerService {
 	 * 查询药品信息，通过返回的药品信息，查看出售的管理员及厂商
 	 */
 	@Override
-	public List<Medicine> fuzzyQuery(String msg) {
-		return medDao.fuzzyQuery(msg);
+	public List<Inventory> fuzzyQuery(String msg) {
+		return invDao.fuzzyQuery(msg);
 	}
 
 	/**

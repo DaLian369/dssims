@@ -2,6 +2,7 @@ package cn.dlian.test;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Random;
 
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -17,9 +18,12 @@ public class TestOrderDao {
 	
 	@Test
 	public void addOrder() {
-		Order order = new Order( 1, 1, 1, 1, 10, 100, new Date(new java.util.Date().getTime()), 1);
-		boolean bo= orderDao.addOrder(order);
-		System.out.println(bo);
+		Random random = new Random();
+		for(int i=1;i<=1000;i++) {
+			Order order = new Order( random.nextInt(30)+1, random.nextInt(30)+1, random.nextInt(30)+1, random.nextInt(30)+1, 10, 100, new Date(new java.util.Date().getTime()), 2);
+			orderDao.addOrder(order);
+		}
+		
 	}
 	
 	@Test

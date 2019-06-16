@@ -1,30 +1,38 @@
 package cn.dlian.entities;
 
 public class Inventory {
-	private Medicine medicine;
-	private Supplier supplier;
+	private Administrator adm;
+	private Medicine med;
+	private Supplier sup;
 	private int count;
-	public Inventory(Medicine medicine, Supplier supplier, int count) {
+	public Inventory(Administrator adm, Medicine med, Supplier sup, int count) {
 		super();
-		this.medicine = medicine;
-		this.supplier = supplier;
+		this.adm = adm;
+		this.med = med;
+		this.sup = sup;
 		this.count = count;
 	}
 	public Inventory() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Medicine getMedicine() {
-		return medicine;
+	public Administrator getAdm() {
+		return adm;
 	}
-	public void setMedicine(Medicine medicine) {
-		this.medicine = medicine;
+	public void setAdm(Administrator adm) {
+		this.adm = adm;
 	}
-	public Supplier getSupplier() {
-		return supplier;
+	public Medicine getMed() {
+		return med;
 	}
-	public void setSupplier(Supplier supplier) {
-		this.supplier = supplier;
+	public void setMed(Medicine med) {
+		this.med = med;
+	}
+	public Supplier getSup() {
+		return sup;
+	}
+	public void setSup(Supplier sup) {
+		this.sup = sup;
 	}
 	public int getCount() {
 		return count;
@@ -34,8 +42,9 @@ public class Inventory {
 	}
 	@Override
 	public String toString() {
-		return "Inventory [medicine=" + medicine + ", supplier=" + supplier + ", count=" + count + "]";
+		return "Inventory [adm=" + adm + ", med=" + med + ", sup=" + sup + ", count=" + count + "]";
 	}
+	
 	
 	
 }
