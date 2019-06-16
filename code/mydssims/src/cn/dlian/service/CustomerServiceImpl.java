@@ -2,6 +2,8 @@ package cn.dlian.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.dlian.dao.ICustomerDao;
@@ -10,15 +12,19 @@ import cn.dlian.dao.IMedicineDao;
 import cn.dlian.dao.IOrderDao;
 import cn.dlian.entities.Customer;
 import cn.dlian.entities.Inventory;
-import cn.dlian.entities.Medicine;
 import cn.dlian.entities.Order;
 import cn.dlian.entities.User;
 
+@Service("cusService")
 @Transactional
 public class CustomerServiceImpl implements ICustomerService {
+	@Autowired
 	private ICustomerDao cusDao;
+	@Autowired
 	private IMedicineDao medDao;
+	@Autowired
 	private IOrderDao orderDao;
+	@Autowired
 	private IInventoryDao invDao;
 	
 	public ICustomerDao getCusDao() {

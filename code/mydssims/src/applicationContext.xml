@@ -9,7 +9,7 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
-       http://www.springframework.org/schema/context http://www.springframework.org/schema/tx/spring-context-3.2.xsd"
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd"
        >
     <!-- 1.配置数据源，其用于连接数据库 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
@@ -44,12 +44,17 @@
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
           p:dataSource-ref="dataSource"
     />
+  
     <!-- 5.开启注解方式，进行自动事务处理的能力 -->
     <tx:annotation-driven transaction-manager="transactionManager" />
     
+    <context:component-scan base-package="cn.dlian">
+    	<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+    
     <!-- 5.配置业务中所需的各个bean，及其依赖关系 -->
     <!-- Dao层 -->
-    <bean id="admDao" class="cn.dlian.dao.AdministratorDaoImpl"
+<!--     <bean id="admDao" class="cn.dlian.dao.AdministratorDaoImpl"
     	p:sqlSession-ref="sqlSession"
     />
     <bean id="cusDao" class="cn.dlian.dao.CustomerDaoImpl"
@@ -69,10 +74,10 @@
     />
     <bean id="invDao" class="cn.dlian.dao.InventoryDaoImpl"
     	p:sqlSession-ref="sqlSession"
-    />
+    /> -->
     
     <!-- Service层 -->
-    <bean id="admService" class="cn.dlian.service.AdministratorServiceImpl"
+<!--     <bean id="admService" class="cn.dlian.service.AdministratorServiceImpl"
           p:admDao-ref="admDao"
           p:medDao-ref="medDao"
           p:orderDao-ref="orderDao"
@@ -88,7 +93,7 @@
     <bean id="supService" class="cn.dlian.service.SupplierServiceImpl"
           p:supDao-ref="supDao"
           p:purDao-ref="purDao"
-    />
+    /> -->
     <!-- 
     <bean id="medService" class="cn.dlian.service.MedicineServiceImpl"
           p:medDao-ref="medDao"
@@ -104,10 +109,10 @@
     /> -->
     
     <!-- 工厂 -->
-    <bean id="daoFactory" class="cn.dlian.dao.DaoFactory"
+<!--     <bean id="daoFactory" class="cn.dlian.dao.DaoFactory"
     	p:admDao-ref="admDao"
     	p:cusDao-ref="cusDao"
-    	p:supDao-ref="supDao"
+    	p:supDao-ref="supDao"	
     	p:medDao-ref="medDao"
     	p:orderDao-ref="orderDao"
     	p:purDao-ref="purDao"
@@ -117,6 +122,6 @@
     	p:admService-ref="admService"
     	p:cusService-ref="cusService"
     	p:supService-ref="supService"
-    />
+    /> -->
     
 </beans>

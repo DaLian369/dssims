@@ -1,8 +1,13 @@
 package cn.dlian.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class ServiceFactory {
+	@Autowired
 	private IAdministratorService admService;
+	@Autowired
 	private ICustomerService cusService;
+	@Autowired
 	private ISupplierService supService;
 	public IAdministratorService getAdmService() {
 		return admService;

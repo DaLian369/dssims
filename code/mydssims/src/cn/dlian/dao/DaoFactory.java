@@ -1,13 +1,23 @@
 package cn.dlian.dao;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class DaoFactory {
+	@Autowired
 	private ICustomerDao cusDao;
+	@Autowired
 	private IAdministratorDao admDao;
+	@Autowired
 	private ISupplierDao supDao;
+	@Autowired
 	private IMedicineDao medDao;
+	@Autowired
 	private IInventoryDao invDao;
+	@Autowired
 	private IOrderDao orderDao;
+	@Autowired
 	private IPurchaseDao purDao;
+	@Autowired
 	public ICustomerDao getCusDao() {
 		return cusDao;
 	}

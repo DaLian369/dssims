@@ -5,13 +5,17 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.dlian.entities.Order;
 
+@Repository("orderDao")
 @Transactional
 public class OrderDaoImpl implements IOrderDao {
 
+	@Autowired
 	private SqlSession sqlSession;
 	
 	public SqlSession getSqlSession() {

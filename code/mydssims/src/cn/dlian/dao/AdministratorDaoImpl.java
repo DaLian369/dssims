@@ -1,13 +1,17 @@
 package cn.dlian.dao;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.dlian.entities.Administrator;
 import cn.dlian.entities.User;
 
+@Repository("admDao")
 @Transactional
 public class AdministratorDaoImpl implements IAdministratorDao {
+	@Autowired
 	private SqlSession sqlSession;
 	
 	public SqlSession getSqlSession() {

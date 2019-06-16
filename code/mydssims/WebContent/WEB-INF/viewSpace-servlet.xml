@@ -18,7 +18,7 @@
 	
 	<mvc:annotation-driven />
 	
-	<bean id="accountController" class="cn.dlian.controllers.AccountController"
+<!-- 	<bean id="accountController" class="cn.dlian.controllers.AccountController"
       p:admService-ref="admService"
       p:cusService-ref="cusService"
       p:supService-ref="supService"
@@ -40,7 +40,7 @@
       p:admService-ref="admService"
       p:cusService-ref="cusService"
       p:supService-ref="supService"
-	/>
+	/> -->
 
 	
 	<mvc:resources location="WEB-INF/css/" mapping="/css/**"/>

@@ -2,6 +2,8 @@ package cn.dlian.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.dlian.dao.IPurchaseDao;
@@ -10,10 +12,13 @@ import cn.dlian.entities.Purchase;
 import cn.dlian.entities.Supplier;
 import cn.dlian.entities.User;
 
+@Service("supService")
 @Transactional
 public class SupplierServiceImpl implements ISupplierService {
 
+	@Autowired
 	private ISupplierDao supDao;
+	@Autowired
 	private IPurchaseDao purDao;
 	
 
