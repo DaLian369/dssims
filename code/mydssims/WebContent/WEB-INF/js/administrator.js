@@ -25,15 +25,15 @@
 	
 	//查询待付款订单
 	$("#queryWaitOrder").click(function(){
-		$("#ajax-content").load("zadministrator/orderInfo.form",queryWaitOrder);
-		
+		var url = "zadministrator/queryWaitOrder.form";
+		var state = "待付款";
+		$("#ajax-content").load("zadministrator/orderInfo.form",queryOrder(url,state));
 	});
 	
-	function queryWaitOrder(){
+	function queryOrder(url,state){
 		$.ajax({
 			type:"post",
-			data:{},
-			url:"zadministrator/queryWaitOrder.form",
+			url:url,
 			success:function(jsonObj){
 				var orders = jsonObj.orders;
 				for(var i = 0;i<orders.length;i++){
@@ -44,8 +44,7 @@
 							orders[i].qty+"</td><td>"+
 							orders[i].dollars+"</td><td>"+
 							orders[i].transactionDate+"</td><td>"+
-							"待付款</td></tr>");
-					
+							state+"</td></tr>");
 					$("#orderInfo").append(orderRow);
 				}
 			}
@@ -53,28 +52,9 @@
 	}
 	//查询已付款订单
 	$("#queryPaidOrder").click(function(){
-		$("#ajax-content").load("zadministrator/orderInfo.form",function(){
-			$.ajax({
-				type:"post",
-				data:{},
-				url:"zadministrator/queryPaidOrder.form",
-				success:function(jsonObj){
-					var orders = jsonObj.orders;
-					for(var i = 0;i<orders.length;i++){
-						var orderRow = $("<tr><td>"+(i+1)+"</td><td>"+
-								orders[i].id+"</td><td>"+
-								orders[i].mid+"</td><td>"+
-								orders[i].sid+"</td><td>"+
-								orders[i].qty+"</td><td>"+
-								orders[i].dollars+"</td><td>"+
-								orders[i].transactionDate+"</td><td>"+
-								"已付款</td></tr>");
-						$("#orderInfo").append(orderRow);
-					}
-				}
-			});
-		});
-		
+		var url = "zadministrator/queryPaidOrder.form";
+		var state = "已付款";
+		$("#ajax-content").load("zadministrator/orderInfo.form",queryOrder(url,state));
 	});
 	
 	/**

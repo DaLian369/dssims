@@ -16,7 +16,7 @@ public interface ICustomerService extends IUserService {
 	boolean cancleOrder(int oid);
 	List<Inventory> queryMedicine(Integer aid,Integer mid,Integer sid);
 	List<Inventory> fuzzyQuery(String msg);
-	List<Order> queryOrdersByCid(int cid);
+	//List<Order> queryOrdersByCid(int cid);
 	List<Order> queryOrdersByCidPaid(int cid);
 	List<Order> queryOrdersByCidWait(int cid);
 } 

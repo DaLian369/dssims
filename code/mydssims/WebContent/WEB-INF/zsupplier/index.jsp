@@ -22,7 +22,7 @@
 	<div class="container-fluid expanded-panel">
 		<div class="row">
 			<div id="logo" class="col-xs-12 col-sm-2">
-				<a href="index.jsp">供应商界面</a>
+				<a href="javascript:void(0)">供应商界面</a>
 			</div>
 			<div id="top-panel" class="col-xs-12 col-sm-10">
 				<div class="row">
@@ -97,7 +97,6 @@
 						<li><a href="javascript:void(0)" id="queryWaitPurchases">待付款</a></li>
 						<li><a href="javascript:void(0)" id="queryPaidPurchases">已付款</a></li>
 						<li><a href="javascript:void(0)" id="exactQuery">精确查询</a></li>
-						<li><a href="javascript:void(0)" id="queryAllPurchases">所有订单</a></li>
 					</ul>
 				</li>
 			</ul>

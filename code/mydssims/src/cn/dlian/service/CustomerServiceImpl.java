@@ -154,12 +154,12 @@ public class CustomerServiceImpl implements ICustomerService {
 
 	/**
 	 * 查询客户所有订单
-	 */
+	 
 	@Override
 	public List<Order> queryOrdersByCid(int cid) {
 		return orderDao.queryOrdersByCid(cid);
 	}
-
+*/
 	/**
 	 * 查询客户已付款订单
 	 */

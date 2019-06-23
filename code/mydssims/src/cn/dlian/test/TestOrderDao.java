@@ -37,7 +37,7 @@ public class TestOrderDao {
 		boolean bo = orderDao.deleteOrder(1);
 		System.out.println(bo);
 	}
-	
+	/*
 	@Test
 	public void queryOrdersByCid(){
 		List<Order> orders = orderDao.queryOrdersByCid(1);
@@ -45,7 +45,7 @@ public class TestOrderDao {
 			System.out.println(order);
 		}
 	}
-	
+	*/
 	@Test
 	public void queryOrdersByCidPaid() {
 		List<Order> orders = orderDao.queryOrdersByCidPaid(1);
@@ -67,7 +67,7 @@ public class TestOrderDao {
 		Order order = orderDao.queryOrderByOid(1);
 		System.out.println(order);
 	}
-	
+	/*
 	@Test
 	public void queryOrdersByAid() {
 		List<Order> orders = orderDao.queryOrdersByAid(1);
@@ -75,7 +75,7 @@ public class TestOrderDao {
 			System.out.println(order);
 		}
 	}
-	
+	*/
 	@Test
 	public void queryOrdersByAidPaid() {
 		List<Order> orders = orderDao.queryOrdersByAidPaid(1);
@@ -91,7 +91,7 @@ public class TestOrderDao {
 			System.out.println(order);
 		}
 	}
-	
+	/*
 	@Test
 	public void queryOrdersByAidCid() {
 		List<Order> orders = orderDao.queryOrdersByAidCid(1,1);
@@ -99,5 +99,5 @@ public class TestOrderDao {
 			System.out.println(order);
 		}
 	}
-	
+	*/
 }

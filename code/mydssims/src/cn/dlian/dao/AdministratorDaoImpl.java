@@ -21,7 +21,7 @@ public class AdministratorDaoImpl implements IAdministratorDao {
 		this.sqlSession = sqlSession;
 	}
 
-	/** 8
+	/**
 	 * 查询管理员信息
 	 */
 	@Override

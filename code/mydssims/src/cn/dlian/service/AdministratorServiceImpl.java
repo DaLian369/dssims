@@ -144,28 +144,28 @@ public class AdministratorServiceImpl implements IAdministratorService{
 
 	/**
 	 * 查询药品
-	 */
+	
 	@Override
 	public Medicine queryMedicine(int mid) {
 		return medDao.queryMedicine(mid);
 	}
-
+ */
 	/**
 	 * 模糊查询
-	 */
+	
 	@Override
 	public List<Medicine> fuzzyQuery(String msg) {
 		return medDao.fuzzyQuery(msg);
-	}
+	} */
 
 	/**
 	 * 查询管理员所有订单
-	 */
+	
 	@Override
 	public List<Order> queryOrdersByAid(int aid) {
 		return orderDao.queryOrdersByAid(aid);
 	}
-
+ */
 	/**
 	 * 查询管理员已成交订单
 	 */
@@ -184,27 +184,27 @@ public class AdministratorServiceImpl implements IAdministratorService{
 
 	/**
 	 * 查询管理员和某一客户相关的订单
-	 */
+	 
 	@Override
 	public List<Order> queryOrdersByAidCid(int aid, int cid) {
 		return orderDao.queryOrdersByAidCid(aid, cid);
 	}
-
+*/
 	/**
 	 * 通过订单号查询
-	 */
+	
 	@Override
 	public Order queryOrderByOid(int oid) {
 		return orderDao.queryOrderByOid(oid);
 	}
-
+ */
 	/**
 	 * 查询管理员所有采购单
-	 */
+	 
 	@Override
 	public List<Purchase> queryPurchasesByAid(int aid) {
 		return purDao.queryPurchasesByAid(aid);
-	}
+	}*/
 
 	/**
 	 * 查询管理员已付款采购单
@@ -232,11 +232,11 @@ public class AdministratorServiceImpl implements IAdministratorService{
 
 	/**
 	 * 通过采购单号查询
-	 */
+	
 	@Override
 	public Purchase queryPurchaseByPid(int pid) {
 		return purDao.queryPurchaseByPid(pid);
-	}
+	} */
 
 	/**
 	 * 查询库存信息

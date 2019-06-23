@@ -60,7 +60,7 @@ public class TestAdministratorService {
 		Medicine med = new Medicine("六神花露水","香香",10,new Date(new java.util.Date().getTime()),"1年");
 		admService.addMedicine(med);
 	}
-	
+	/*
 	@Test
 	public void testQueryMedicine() {
 		System.out.println(admService.queryMedicine(3));
@@ -77,7 +77,7 @@ public class TestAdministratorService {
 		for (Order order : orders) {
 			System.out.println(order);
 		}
-	}
+	}*/
 	
 	@Test
 	public void testQueryOrdersByAidPaid() {
@@ -94,7 +94,7 @@ public class TestAdministratorService {
 			System.out.println(order);
 		}
 	}
-	
+	/*
 	@Test
 	public void testQueryOrderByOid() {
 		Order order = admService.queryOrderByOid(2);
@@ -108,7 +108,7 @@ public class TestAdministratorService {
 			System.out.println(purchase);
 		}
 	}
-	
+	*/
 	@Test
 	public void testQueryPurchasesByAidPaid() {
 		List<Purchase> purs = admService.queryPurchasesByAidPaid(1);
@@ -124,12 +124,12 @@ public class TestAdministratorService {
 			System.out.println(purchase);
 		}
 	}
-	
+	/*
 	@Test
 	public void testQueryPurchaseByPid() {
 		Purchase pur = admService.queryPurchaseByPid(1);
 		System.out.println(pur);
-	}
+	}*/
 	
 	@Test
 	public void testQueryInventory() {

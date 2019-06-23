@@ -80,14 +80,14 @@ public class TestCustomerService {
 		List<Inventory> invs = cusService.fuzzyQuery("1");
 		System.out.println(invs.get(0));
 	}
-	
+	/*
 	@Test
 	public void testQueryOrdersByCid() {
 		List<Order> orders = cusService.queryOrdersByCid(1);
 		for (Order order : orders) {
 			System.out.println(order);
 		}
-	}
+	}*/
 	
 	@Test
 	public void testQueryOrdersByCidPaid() {

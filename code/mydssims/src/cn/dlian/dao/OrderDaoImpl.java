@@ -61,14 +61,14 @@ public class OrderDaoImpl implements IOrderDao {
 	
 	/**
 	 * 通过cid查询订单
-	 */
+	 
 	@Override
 	public List<Order> queryOrdersByCid(int cid) {
 		String statement = "cn.dlian.entities.OrderMapper.queryOrdersByCid";
 		List<Order> orders = sqlSession.selectList(statement,cid);
 		return orders;
 	}
-
+*/
 	/**
 	 * 查询cid客户的已付款订单
 	 */
@@ -101,14 +101,14 @@ public class OrderDaoImpl implements IOrderDao {
 
 	/**
 	 * 查询aid管理员的订单
-	 */
+	
 	@Override
 	public List<Order> queryOrdersByAid(int aid) {
 		String statement = "cn.dlian.entities.OrderMapper.queryOrdersByAid";
 		List<Order> orders = sqlSession.selectList(statement,aid);
 		return orders;
 	}
-
+ */
 	/**
 	 * 查询aid管理员下的已付款的订单
 	 */
@@ -131,7 +131,7 @@ public class OrderDaoImpl implements IOrderDao {
 
 	/**
 	 * 通过aid，cid查询订单
-	 */
+	 
 	@Override
 	public List<Order> queryOrdersByAidCid(int aid, int cid) {
 		String statement = "cn.dlian.entities.OrderMapper.queryOrdersByAidCid";
@@ -141,7 +141,7 @@ public class OrderDaoImpl implements IOrderDao {
 		List<Order> orders = sqlSession.selectList(statement,map);
 		return orders;
 	}
-
+*/
 	/**
 	 * 管理员用来查询特定的订单
 	 */
@@ -155,7 +155,6 @@ public class OrderDaoImpl implements IOrderDao {
 		List<Order> orders = sqlSession.selectList(statement,map);
 		return orders;
 	}
-
 
 
 }
