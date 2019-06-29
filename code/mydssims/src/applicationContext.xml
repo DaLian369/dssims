@@ -11,6 +11,10 @@
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd"
        >
+       
+    <!-- Spring配置文件的核心点(数据源、与MyBatis的整合、事务控制) -->
+       
+       
     <!-- 1.配置数据源，其用于连接数据库 -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
     	  p:driverClassName="com.mysql.cj.jdbc.Driver"

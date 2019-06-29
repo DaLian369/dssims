@@ -97,15 +97,6 @@ public class PurchaseDaoImpl implements IPurchaseDao {
 		return purchase;
 	}
 
-	/**
-	 * 通过sid查询采购单
-	 */
-	@Override
-	public List<Purchase> queryPurchasesBySid(int sid) {
-		String sql = "cn.dlian.entities.PurchaseMapper.queryPurchasesBySid";
-		List<Purchase> purchases = sqlSession.selectList(sql,sid);
-		return purchases;
-	}
 
 	/**
 	 * 查询sid供应商下的已付款采购单

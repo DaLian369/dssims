@@ -61,7 +61,7 @@ $("#sureQuery").click(function(){
 						invs[i].sup.name+"</td><td>"+
 						invs[i].med.price+"</td><td>"+
 						invs[i].med.type+"</td><td>"+
-						"<button type='button' name='addPur'value="+i+">采购</button></td></tr>");
+						"<button class='btn btn-success' type='button' name='addPur'value="+i+">采购</button></td></tr>");
 				$("#medInfo").append(invRow);
 			}
 			//重要，下订单

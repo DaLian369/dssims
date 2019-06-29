@@ -70,14 +70,6 @@ public class TestPurchaseDao {
 	}
 	
 	@Test
-	public void queryPurchasesBySid() {
-		List<Purchase> purchases = purDao.queryPurchasesBySid(1);
-		for (Purchase purchase : purchases) {
-			System.out.println(purchase);
-		}
-	}
-	
-	@Test
 	public void queryPurchasesBySidPaid() {
 		List<Purchase> purchases = purDao.queryPurchasesBySidPaid(1);
 		for (Purchase purchase : purchases) {

@@ -79,13 +79,6 @@ public class SupplierServiceImpl implements ISupplierService {
 		return supDao.updateInfo(sup);
 	}
 
-	/**
-	 * 查询供应商所有订单
-	 */
-	@Override
-	public List<Purchase> queryPurchasesBySid(int sid) {
-		return purDao.queryPurchasesBySid(sid);
-	}
 
 	/**
 	 * 查询供应商已成交订单

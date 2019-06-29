@@ -49,14 +49,6 @@ public class TestSupplierService {
 	}
 	
 	@Test
-	public void testQueryPurchasesBySid() {
-		List<Purchase> purs = supService.queryPurchasesBySid(1);
-		for (Purchase purchase : purs) {
-			System.out.println(purchase);
-		}
-	}
-	
-	@Test
 	public void testQueryPurchasesBySidPaid() {
 		List<Purchase> purs = supService.queryPurchasesBySidPaid(1);
 		for (Purchase purchase : purs) {

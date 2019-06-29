@@ -50,8 +50,8 @@
 							orders[i].aid+"</td><td>"+
 							orders[i].dollars+"</td><td>"+
 							orders[i].transactionDate+"</td><td>"+
-							"<button type='button' name='payment' value="+orders[i].id+">付款</button>&emsp;" +
-							"<button type='button' name='cancleOrder' value="+orders[i].id+">取消</button></td></tr>");
+							"<button class='btn btn-success' type='button' name='payment' value="+orders[i].id+">付款</button>&emsp;" +
+							"<button class='btn btn-danger' type='button' name='cancleOrder' value="+orders[i].id+">取消</button></td></tr>");
 					
 					$("#orderInfo").append(orderRow);
 				}

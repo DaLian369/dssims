@@ -9,7 +9,6 @@ public interface IPurchaseDao {
 	List<Purchase> queryPurchasesByAidPaid(int aid);
 	List<Purchase> queryPurchasesByAidWait(int aid);
 	Purchase queryPurchaseByPid(int pid);
-	List<Purchase> queryPurchasesBySid(int sid);
 	List<Purchase> queryPurchasesBySidPaid(int sid);
 	List<Purchase> queryPurchasesBySidWait(int sid);
 	List<Purchase> queryPurchasesByThreeId(Integer sid,Integer mid,Integer aid);

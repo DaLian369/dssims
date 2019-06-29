@@ -82,8 +82,8 @@
 							purs[i].qty+"</td><td>"+
 							purs[i].dollars+"</td><td>"+
 							purs[i].transactionDate+"</td><td>"+
-							"<button type='button' name='payment' value="+purs[i].id+">付款</button>&emsp;" +
-							"<button type='button' name='canclePur' value="+purs[i].id+">取消</button></td></tr>");
+							"<button class='btn btn-success' type='button' name='payment' value="+purs[i].id+">付款</button>&emsp;" +
+							"<button class='btn btn-danger' type='button' name='canclePur' value="+purs[i].id+">取消</button></td></tr>");
 					$("#purInfo").append(purRow);
 				}
 				//取消采购单

@@ -28,7 +28,7 @@ $(function(){
 						invs[i].med.id+"</td><td>"+
 						invs[i].sup.id+"</td><td>"+
 						invs[i].count+"</td><td>"+
-						"<button type='button' name='addPur'value="+i+">购买</button></td></tr>");
+						"<button class='btn btn-success' type='button' name='addPur'value="+i+">购买</button></td></tr>");
 				$("#invInfo").append(invRow);
 			}
 			//重要，下订单
