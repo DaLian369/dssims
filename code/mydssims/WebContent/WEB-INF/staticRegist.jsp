@@ -51,16 +51,16 @@
 		});
 		
 		$("#regist").click(function(){
-			var name = $("#name").val();
-			var password = $("#password").val();
-			var phone = $("#phone").val();
-			var city = $("#city").val();
-			var identity = $("input[name='identity']").val();
+			var name = $("input[name='name']").val();
+			var password = $("input[name='password']").val();
+			var phone = $("input[name='phone']").val();
+			var city = $("input[name='city']").val();
+			var identity = $("input[name='identity']:checked").val();
 			$.post("regist.form",{name:name,password:password,phone:phone,city:city,identity:identity},function(msg){
 				if(msg=="y"){
 					alert("注册成功!");
 				}else{
-					alert("注册失败!手机号已绑定！");
+					alert("注册失败!");
 				}
 			})
 			

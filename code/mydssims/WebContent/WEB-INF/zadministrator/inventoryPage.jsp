@@ -1,13 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="form-group">
-	<label for="datetime_example" class="col-sm-4 control-label">药品</label>
+	<label for="datetime_example" class="col-sm-4 control-label">药品id</label>
 	<div class="col-sm-8">
 		<input type="text" class="form-control" id="mid">
 	</div>
 </div>
 <div class="form-group">
-	<label for="datetime_example" class="col-sm-4 control-label">供应商</label>
+	<label for="datetime_example" class="col-sm-4 control-label">供应商id</label>
 	<div class="col-sm-8">
 		<input type="text" class="form-control" id="sid">
 	</div>
@@ -46,8 +46,8 @@ $(function(){
 				var invs = jsonObj.invs;
 				for(var i = 0;i<invs.length;i++){
 					var invRow = $("<tr><td>"+(i+1)+"</td><td>"+
-							invs[i].med.id+"</td><td>"+
-							invs[i].sup.id+"</td><td>"+
+							invs[i].med.name+"</td><td>"+
+							invs[i].sup.name+"</td><td>"+
 							invs[i].count+"</td><td>"+
 							"<button class='btn btn-success' type='button' name='addPur'value="+i+">购买</button></td></tr>");
 					$("#invInfo").append(invRow);

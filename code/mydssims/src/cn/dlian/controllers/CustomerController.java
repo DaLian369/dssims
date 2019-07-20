@@ -54,12 +54,18 @@ public class CustomerController {
 	public void setSupService(ISupplierService supService) {
 		this.supService = supService;
 	}
-	
+	/**
+	 * 客户界面
+	 * @return
+	 */
 	@RequestMapping("index")
 	public ModelAndView index() {
 		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/index.jsp");
 		return mav;
 	}
+	/**
+	 * 返回客户姓名
+	 */
 	@RequestMapping(value="getUserName",produces="text/json;charset=UTF-8")
 	@ResponseBody
 	public String getUserName(HttpServletRequest req) {
@@ -69,6 +75,9 @@ public class CustomerController {
 		return jsonObj.toString();
 	}
 
+	/**
+	 * 返回首页
+	 */
 	@RequestMapping("headPage")
 	public ModelAndView headPage(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/headPage.jsp");
@@ -76,6 +85,9 @@ public class CustomerController {
 		return mav;
 	}
 	
+	/**
+	 * 返回个人信息页面
+	 */
 	@RequestMapping("userInfo")
 	public ModelAndView userInfo(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/userInfo.jsp");
@@ -85,6 +97,9 @@ public class CustomerController {
 		return mav;
 	}
 	
+	/**
+	 * 修改信息
+	 */
 	@RequestMapping("updateInfo")
 	@ResponseBody
 	public String updateInfo(@RequestParam String name,@RequestParam String phone,HttpServletRequest request) throws UnsupportedEncodingException {
@@ -105,6 +120,9 @@ public class CustomerController {
 		return "n";
 	}
 	
+	/**
+	 * 修改密码
+	 */
 	@RequestMapping("updatePassword")
 	@ResponseBody
 	public String updatePassword(@RequestParam String oldPass,@RequestParam String newPass,
@@ -121,6 +139,9 @@ public class CustomerController {
 		return msg;
 	}
 	
+	/**
+	 * 精确查询药品信息
+	 */
 	@RequestMapping(value="queryMedicineByThreeId",produces="text/json;charset=UTF-8")
 	@ResponseBody
 	public String queryMedicineByThreeId(@RequestParam Integer aid,@RequestParam Integer mid,@RequestParam Integer sid) {
@@ -131,6 +152,9 @@ public class CustomerController {
 		return jsonStr;
 	}
 	
+	/**
+	 * 模糊查询药品信息
+	 */
 	@RequestMapping(value="fuzzyQuery",produces="text/json;charset=UTF-8")
 	@ResponseBody
 	public String fuzzyQuery(@RequestParam String msg) {
@@ -140,7 +164,9 @@ public class CustomerController {
 		String jsonStr = jsonObj.toString();
 		return jsonStr;
 	}
-	
+	/**
+	 * 查询客户待付款订单
+	 */
 	@RequestMapping(value="queryWaitOrder",produces="text/json;charset=UTF-8")
 	@ResponseBody
 	public String queryWaitOrder(HttpServletRequest req) {
@@ -152,6 +178,9 @@ public class CustomerController {
 		return jsonStr;
 	}
 	
+	/**
+	 * 查询客户已付款订单
+	 */
 	@RequestMapping(value="queryPaidOrder",produces="text/json;charset=UTF-8")
 	@ResponseBody
 	public String queryPaidOrder(HttpServletRequest req) {
@@ -163,6 +192,9 @@ public class CustomerController {
 		return jsonStr;
 	}
 	
+	/**
+	 * 付款
+	 */
 	@RequestMapping(value="payment",produces="text/json;charset=UTF-8")
 	@ResponseBody
 	public String payment(@RequestParam int oid) {
@@ -177,6 +209,9 @@ public class CustomerController {
 		return jsonStr;
 	}
 	
+	/**
+	 * 取消订单
+	 */
 	@RequestMapping(value="cancleOrder",produces="text/json;charset=UTF-8")
 	@ResponseBody
 	public String cancleOrder(@RequestParam int oid) {
@@ -191,25 +226,37 @@ public class CustomerController {
 		return jsonStr;
 	}
 	
+	/**
+	 * 返回修改密码页面
+	 */
 	@RequestMapping("updatePass")
 	public ModelAndView updatePass() {
 		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/updatePass.jsp");
 		return mav;
 	}
 	
-	
+	/**
+	 * 返回订单查询页面
+	 * @return
+	 */
 	@RequestMapping("orderInfo")
 	public ModelAndView orderInfo() {
 		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/orderInfo.jsp");
 		return mav;
 	}
 	
+	/**
+	 * 返回购药页面
+	 */
 	@RequestMapping("buyMedicinePage")
 	public ModelAndView buyMedicinePage() {
 		ModelAndView mav = new ModelAndView("/WEB-INF/zcustomer/buyMedicinePage.jsp");
 		return mav;
 	}
 	
+	/**
+	 * 返回下单时订单信息页面
+	 */
 	@RequestMapping("order")
 	public ModelAndView order(@RequestParam int aid,@RequestParam int sid,@RequestParam int mid,
 			@RequestParam float price) {
@@ -221,6 +268,9 @@ public class CustomerController {
 		return mav;
 	}
 	
+	/**
+	 * 生成订单
+	 */
 	@RequestMapping("addOrder")
 	@ResponseBody
 	public String addOrder(@RequestParam int mid,@RequestParam int sid,
@@ -239,6 +289,4 @@ public class CustomerController {
 			return "n";
 		}
 	}
-	
-	
 }

@@ -9,8 +9,8 @@ import cn.dlian.entities.Order;
 import cn.dlian.entities.Purchase;
 
 public interface IAdministratorService extends IUserService {
-	boolean regist(Administrator adm);
 	Administrator queryInfo(int id);
+	boolean regist(Administrator adm);
 	boolean updateInfo(Administrator adm);
 	boolean addMedicine(Medicine med);
 	boolean addInventory(int aid,int mid,int sid,int count);

@@ -116,8 +116,6 @@ public class AdministratorServiceImpl implements IAdministratorService{
 
 	/**
 	 * 发布药品信息
-	 * 1.添加药品信息(medDao)
-	 * 2.添加库存(invDao)
 	 */
 	@Override
 	public boolean addMedicine(Medicine med) {
@@ -127,7 +125,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 	/**
 	 * 删除药品信息
 	 * (只是删除自己的库存,并不会删除该药品的信息)
-	 * (也就是说，Medicine里的药品信息只会多不会少
+	 * (也就是说，Medicine里的药品信息只会多不会少）
 	 */
 	@Override
 	public boolean deleteInventory(int aid,int mid,int sid) {
@@ -248,6 +246,7 @@ public class AdministratorServiceImpl implements IAdministratorService{
 
 	/**
 	 * 下采购单
+	 * 没付款之前都是不会修改库存
 	 */
 	@Override
 	public boolean placeOnPurchase(Purchase pur) {

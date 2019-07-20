@@ -1,6 +1,5 @@
 package cn.dlian.test;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -8,7 +7,6 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import cn.dlian.dao.DaoFactory;
 import cn.dlian.dao.ICustomerDao;
 import cn.dlian.entities.Customer;
-import cn.dlian.entities.Order;
 
 public class TestCustomerDao {
 	ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
@@ -27,10 +25,13 @@ public class TestCustomerDao {
 	
 	@Test
 	public void testRegist() {
-		for(int i=1;i<=30;i++) {
-			Customer cus = new Customer("客户"+i,"123456","10000"+i);
-			cusDao.addCustomer(cus);
-		}
+//		for(int i=1;i<=30;i++) {
+//			Customer cus = new Customer("客户"+i,"123456","10000"+i);
+//			cusDao.addCustomer(cus);
+//		}
+		Customer cus = new Customer("客户-1","123456","110000");
+		boolean i = cusDao.addCustomer(cus);
+		System.out.println(i);
 	}
 	
 	@Test

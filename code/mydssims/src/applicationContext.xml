@@ -58,7 +58,7 @@
     
     <!-- 5.配置业务中所需的各个bean，及其依赖关系 -->
     <!-- Dao层 -->
-<!--     <bean id="admDao" class="cn.dlian.dao.AdministratorDaoImpl"
+    <bean id="admDao" class="cn.dlian.dao.AdministratorDaoImpl"
     	p:sqlSession-ref="sqlSession"
     />
     <bean id="cusDao" class="cn.dlian.dao.CustomerDaoImpl"
@@ -78,7 +78,7 @@
     />
     <bean id="invDao" class="cn.dlian.dao.InventoryDaoImpl"
     	p:sqlSession-ref="sqlSession"
-    /> -->
+    /> 
     
     <!-- Service层 -->
 <!--     <bean id="admService" class="cn.dlian.service.AdministratorServiceImpl"
@@ -113,7 +113,7 @@
     /> -->
     
     <!-- 工厂 -->
-<!--     <bean id="daoFactory" class="cn.dlian.dao.DaoFactory"
+     <bean id="daoFactory" class="cn.dlian.dao.DaoFactory"
     	p:admDao-ref="admDao"
     	p:cusDao-ref="cusDao"
     	p:supDao-ref="supDao"	
@@ -126,6 +126,6 @@
     	p:admService-ref="admService"
     	p:cusService-ref="cusService"
     	p:supService-ref="supService"
-    /> -->
+    /> 
     
 </beans>

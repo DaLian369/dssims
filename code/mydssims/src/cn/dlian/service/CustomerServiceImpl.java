@@ -111,7 +111,6 @@ public class CustomerServiceImpl implements ICustomerService {
 	 * 付款
 	 * 1.修改订单
 	 * 2.减少库存(invDao)
-	 * @throws Exception 
 	 */
 	@Override
 	public boolean payment(int oid){

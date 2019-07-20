@@ -25,8 +25,8 @@ $(function(){
 			var invs = jsonObj.invs;
 			for(var i = 0;i<invs.length;i++){
 				var invRow = $("<tr><td>"+(i+1)+"</td><td>"+
-						invs[i].med.id+"</td><td>"+
-						invs[i].sup.id+"</td><td>"+
+						invs[i].med.name+"</td><td>"+
+						invs[i].sup.name+"</td><td>"+
 						invs[i].count+"</td><td>"+
 						"<button class='btn btn-success' type='button' name='addPur'value="+i+">购买</button></td></tr>");
 				$("#invInfo").append(invRow);

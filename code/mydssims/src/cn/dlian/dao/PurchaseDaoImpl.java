@@ -37,7 +37,7 @@ public class PurchaseDaoImpl implements IPurchaseDao {
 	}
 
 	/**
-	 * 付款
+	 * 修改采购单状态为“已付款”
 	 */
 	@Override
 	public boolean updatePurchase(int pid,int state) {

@@ -54,11 +54,14 @@ public class CustomerDaoImpl implements ICustomerDao {
 	@Override
 	public boolean addCustomer(Customer cus) {
 		String statement = "cn.dlian.entities.CustomerMapper.addCustomer";
-		try {
-			return sqlSession.insert(statement,cus)>0;
-		}catch(Exception e) {
-			return false;
-		}
+		return sqlSession.insert(statement,cus)>0;
+//		try {
+//			System.out.println(2);
+//			return sqlSession.insert(statement,cus)>0;
+//		}catch(Exception e) {
+//			System.out.println(1);
+//			return false;
+//		}
 	}
 
 	/**

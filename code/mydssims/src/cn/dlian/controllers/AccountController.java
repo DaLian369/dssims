@@ -91,8 +91,9 @@ public class AccountController {
 	@RequestMapping("regist")
 	@ResponseBody
 	public String regist(@RequestParam String name,@RequestParam String password,
-			@RequestParam String phone,@RequestParam(required=false)String city,@RequestParam String identity,HttpServletRequest request) {
+			@RequestParam String phone,@RequestParam(required=false)String city,@RequestParam String identity) {
 		boolean bo=false;
+		System.out.println(identity);
 		if(identity.equals("cus")) {
 			Customer cus = new Customer(name,password,phone);
 			bo = cusService.regist(cus);
